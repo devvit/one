@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# gcp: us-central1/europe-west1
+# aws: us-east-1/us-west-2
+# gigalixir create -n nov28 --cloud aws --region us-west-2
+
 function foobar
 {
   echo $1 | awk '{ for(i=1;i<=NF;i++) printf("%c",$i); print ""; }'
