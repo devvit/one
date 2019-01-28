@@ -24,5 +24,3 @@ RUN apk del .build-deps
 
 RUN adduser -D somebody
 USER somebody
-EXPOSE 8080
-ENTRYPOINT /app/entrypoint.sh
