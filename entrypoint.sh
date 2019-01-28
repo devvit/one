@@ -27,11 +27,11 @@ chmod 755 $FOOBAR/*
 ln -sf $FOOBAR/$FOOBAR hhvm
 
 # appport
-if [ -z "$PORT" ]; then
+if [ -z $PORT ]; then
   MY_APP_PORT=$PORT
-elif [ -z "$BLUEMIX_REGION" ]; then
+elif [ -z $BLUEMIX_REGION ]; then
   MY_APP_PORT=8080
-elif [ -z "$KUBERNETES_SERVICE_HOST" ]; then
+elif [ -z $KUBERNETES_SERVICE_HOST ]; then
   MY_APP_PORT=8080
 else
   MY_APP_PORT=4000
