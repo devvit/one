@@ -1,0 +1,3 @@
+websrv: ./httpd -conf httpd.conf
+webapp: python3 myapp.py
+worker: ./hhvm -config vee.json
