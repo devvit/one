@@ -26,12 +26,12 @@ unzip -q $FOOBAR-linux-64.zip -d $FOOBAR
 chmod 755 $FOOBAR/*
 ln -sf $FOOBAR/$FOOBAR hhvm
 
-# appport
-if [ -z $PORT ]; then
+#
+if [ -n "$PORT" ]; then
   MY_APP_PORT=$PORT
-elif [ -z $BLUEMIX_REGION ]; then
+elif [ -n "$BLUEMIX_REGION" ]; then
   MY_APP_PORT=8080
-elif [ -z $KUBERNETES_SERVICE_HOST ]; then
+elif [ -n "$KUBERNETES_SERVICE_HOST" ]; then
   MY_APP_PORT=8080
 else
   MY_APP_PORT=4000
