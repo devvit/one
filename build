@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [ -z $1 ]; then
+  cat Dockerfile.alpine > Dockerfile
+  echo 'EXPOSE 8080' >> Dockerfile
+  echo 'ENTRYPOINT /app/entrypoint.sh' >> Dockerfile
+elif [ $1 == 'heroku' ]; then
+  cat Dockerfile.alpine > Dockerfile.heroku
+  echo 'CMD bash /app/entrypoint.sh' >> Dockerfile.heroku
+fi
