@@ -48,4 +48,7 @@ fi
 export MY_APP_PORT
 
 #
+base64 -d test.png > test.json
+
+#
 honcho start -f Procfile.honcho
