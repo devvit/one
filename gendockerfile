@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+#
+cat Dockerfile.alpine > Dockerfile
+echo 'EXPOSE 8080' >> Dockerfile
+echo 'ENTRYPOINT /app/entrypoint.sh' >> Dockerfile
+
+#
+cat Dockerfile.alpine > Dockerfile.heroku
+echo 'CMD bash /app/entrypoint.sh' >> Dockerfile.heroku
