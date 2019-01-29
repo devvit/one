@@ -2,7 +2,6 @@
 
 import os
 import time
-import subprocess
 import json
 
 import asyncio
@@ -17,14 +16,6 @@ routes = web.RouteTableDef()
 device = os.getenv('DEVICE') or 'lo'
 
 
-async def get_bytes():
-    p = await asyncio.create_subprocess_shell(
-        f'cat /sys/class/net/{device}/statistics/rx_bytes',
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE)
-    return int((await p.communicate())[0])
-
-
 @routes.get('/')
 @aiohttp_jinja2.template('index.html')
 async def hello(request):
@@ -35,9 +26,11 @@ async def websocket_handler(request):
     ws = web.WebSocketResponse()
     await ws.prepare(request)
     while True:
-        s0 = await get_bytes()
+        s0 = psutil.net_io_counters(pernic=True)[device].bytes_recv
+        # s0 = await get_bytes()
         await asyncio.sleep(1)
-        s1 = await get_bytes()
+        s1 = psutil.net_io_counters(pernic=True)[device].bytes_recv
+        # s1 = await get_bytes()
         s3 = s1 - s0
         now = int(time.time())
         await ws.send_str(json.dumps([
