@@ -27,10 +27,8 @@ async def websocket_handler(request):
     await ws.prepare(request)
     while True:
         s0 = psutil.net_io_counters(pernic=True)[device].bytes_recv
-        # s0 = await get_bytes()
         await asyncio.sleep(1)
         s1 = psutil.net_io_counters(pernic=True)[device].bytes_recv
-        # s1 = await get_bytes()
         s3 = s1 - s0
         now = int(time.time())
         await ws.send_str(json.dumps([

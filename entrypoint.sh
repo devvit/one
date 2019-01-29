@@ -4,6 +4,10 @@
 # aws: us-east-1/us-west-2
 # gigalixir create -n nov28 --cloud aws --region us-west-2
 
+# docker tag <image> registry.heroku.com/<app>/web
+# docker push registry.heroku.com/<app>/<process-type>
+# heroku container:release web
+
 function foobar
 {
   echo $1 | awk '{ for(i=1;i<=NF;i++) printf("%c",$i); print ""; }'
