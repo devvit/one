@@ -44,7 +44,7 @@ async def websocket_handler(request):
 app = web.Application()
 app.add_routes([web.static('/static', 'static')])
 aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
-app.add_routes([web.get('/ws', websocket_handler)])
+app.add_routes([web.get('/test', websocket_handler)])
 app.add_routes(routes)
 
 if __name__ == '__main__':
