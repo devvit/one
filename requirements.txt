@@ -3,3 +3,4 @@ aiohttp-devtools
 aiohttp_jinja2
 honcho
 psutil
+steganographer
