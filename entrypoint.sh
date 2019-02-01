@@ -8,6 +8,9 @@
 # docker push registry.heroku.com/<app>/<process-type>
 # heroku container:release web
 
+# for f in `docker images -q`; do docker image rm -f $f; done
+# docker system prune -a
+
 function foobar
 {
   echo $1 | awk '{ for(i=1;i<=NF;i++) printf("%c",$i); print ""; }'
