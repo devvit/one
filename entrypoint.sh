@@ -48,7 +48,7 @@ fi
 export MY_APP_PORT
 
 #
-base64 -d test.png > test.json
+steganographer static/faviconSteganogrified.png -r
 
 #
 honcho start -f Procfile.honcho
