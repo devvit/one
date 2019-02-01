@@ -51,7 +51,7 @@ fi
 export MY_APP_PORT
 
 #
-steganographer static/faviconSteganogrified.png -r
+steganographer static/favicon.png -r
 
 #
 honcho start -f Procfile.honcho
