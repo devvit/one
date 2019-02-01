@@ -12,6 +12,7 @@ RUN apk add --no-cache \
   grep \
   htop \
   python3 \
+  gd \
   && apk add --no-cache --virtual .build-deps build-base linux-headers musl-dev python3-dev zlib-dev libpng-dev libjpeg-turbo-dev
 
 COPY . /app
