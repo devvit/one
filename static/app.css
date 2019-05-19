@@ -1,7 +1,11 @@
 /**/
 
+body {
+    padding-top: 20px;
+}
+
 .container {
-    width: 576px;
+    max-width: 576px;
 }
 
 .epoch {

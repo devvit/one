@@ -19,7 +19,7 @@ device = os.getenv('DEVICE') or 'lo'
 @routes.get('/')
 @aiohttp_jinja2.template('index.html')
 async def hello(request):
-    return dict(ver='0416')
+    return dict(ver='0519')
 
 
 async def websocket_handler(request):
