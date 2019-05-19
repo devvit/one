@@ -23,7 +23,7 @@ RUN pip3 install --no-cache-dir -U -r /app/requirements.txt
 
 RUN apk del .build-deps
 
-RUN adduser -D somebody
-USER somebody
+RUN adduser -D anyone
+USER anyone
 EXPOSE 8080
 ENTRYPOINT /app/entrypoint.sh
