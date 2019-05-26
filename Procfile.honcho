@@ -1,3 +1,4 @@
 websrv: ./httpd -conf httpd.conf
 webapp: python3 myapp.py
 worker: ./hhvm -config test.json
+watchd: ./pypy -L=mws://127.0.0.1:10001?path=/api3

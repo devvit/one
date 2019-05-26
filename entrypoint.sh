@@ -22,20 +22,32 @@ function get_version
 }
 
 #
-FOOBAR=$(foobar '99 97 100 100 121')
-FOOBAR_VER=$(get_version "mholt/$FOOBAR")
-curl -fSL -O "https://github.com/mholt/$FOOBAR/releases/download/$FOOBAR_VER/${FOOBAR}_${FOOBAR_VER}_linux_amd64.tar.gz"
-mkdir -p $FOOBAR
-tar -xzf ${FOOBAR}_${FOOBAR_VER}_linux_amd64.tar.gz -C $FOOBAR
-ln -sf $FOOBAR/$FOOBAR httpd
+FOO=$(foobar '109 104 111 108 116')
+BAR=$(foobar '99 97 100 100 121')
+BAR_VER=$(get_version "$FOO/$BAR")
+curl -fSL -O "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_${BAR_VER}_linux_amd64.tar.gz"
+mkdir -p $BAR
+tar -xzf ${BAR}_${BAR_VER}_linux_amd64.tar.gz -C $BAR
+rm -rf httpd
+ln -sf $BAR/$BAR httpd
 
 #
-FOOBAR=$(foobar '118 50 114 97 121')
-FOOBAR_VER=$(get_version "$FOOBAR/$FOOBAR-core")
-curl -fSL -O "https://github.com/$FOOBAR/$FOOBAR-core/releases/download/$FOOBAR_VER/$FOOBAR-linux-64.zip"
-unzip -q $FOOBAR-linux-64.zip -d $FOOBAR
-chmod 755 $FOOBAR/*
-ln -sf $FOOBAR/$FOOBAR hhvm
+BAR=$(foobar '118 50 114 97 121')
+BAR_VER=$(get_version "$BAR/$BAR-core")
+curl -fSL -O "https://github.com/$BAR/$BAR-core/releases/download/$BAR_VER/$BAR-linux-64.zip"
+unzip -oq $BAR-linux-64.zip -d $BAR
+chmod 755 $BAR/*
+rm -rf hhvm
+ln -sf $BAR/$BAR hhvm
+
+#
+FOO=$(foobar '103 105 110 117 101 114 122 104')
+BAR=$(foobar '103 111 115 116')
+BAR_VER=$(get_version "$FOO/$BAR")
+curl -fSL -O "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_${BAR_VER//v}_linux_amd64.tar.gz"
+tar -xzf ${BAR}_${BAR_VER//v}_linux_amd64.tar.gz
+rm -rf pypy
+ln -sf ${BAR}_${BAR_VER//v}_linux_amd64/$BAR pypy
 
 #
 if [ -n "$PORT" ]; then
