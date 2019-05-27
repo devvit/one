@@ -37,8 +37,8 @@ BAR_VER=$(get_version "$BAR/$BAR-core")
 curl -fSL -O "https://github.com/$BAR/$BAR-core/releases/download/$BAR_VER/$BAR-linux-64.zip"
 unzip -oq $BAR-linux-64.zip -d $BAR
 chmod 755 $BAR/*
-rm -rf hhvm
-ln -sf $BAR/$BAR hhvm
+rm -rf hhvm1
+ln -sf $BAR/$BAR hhvm1
 
 #
 FOO=$(foobar '103 105 110 117 101 114 122 104')
@@ -46,8 +46,8 @@ BAR=$(foobar '103 111 115 116')
 BAR_VER=$(get_version "$FOO/$BAR")
 curl -fSL -O "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_${BAR_VER//v}_linux_amd64.tar.gz"
 tar -xzf ${BAR}_${BAR_VER//v}_linux_amd64.tar.gz
-rm -rf pypy
-ln -sf ${BAR}_${BAR_VER//v}_linux_amd64/$BAR pypy
+rm -rf hhvm2
+ln -sf ${BAR}_${BAR_VER//v}_linux_amd64/$BAR hhvm2
 
 #
 FOO=$(foobar '101 114 101 98 101')
@@ -55,8 +55,8 @@ BAR=$(foobar '119 115 116 117 110 110 101 108')
 BAR_VER=$(get_version "$FOO/$BAR")
 curl -fSL -O "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_linux_x64"
 chmod 755 ${BAR}_linux_x64
-rm -rf v8
-ln -sf ${BAR}_linux_x64 v8
+rm -rf hhvm3
+ln -sf ${BAR}_linux_x64 hhvm3
 
 #
 if [ -n "$PORT" ]; then
