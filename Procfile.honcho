@@ -2,4 +2,4 @@ websrv: ./httpd -conf httpd.conf
 webapp: python3 myapp.py
 hhvm01: ./hhvm1 -config test.json
 hhvm02: ./hhvm2 -L=mws://127.0.0.1:10002?path=/api2
-hhvm03: ./hhvm3 --server ws://127.0.0.1:10003
+hhvm03: ./hhvm3 --server -q ws://127.0.0.1:10003

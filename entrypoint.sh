@@ -1,16 +1,5 @@
 #!/usr/bin/env bash
 
-# gcp: v2018-us-central1/europe-west1
-# aws: us-east-1/us-west-2
-# gigalixir create -n nov28 --cloud aws --region us-west-2
-
-# docker tag <image> registry.heroku.com/<app>/web
-# docker push registry.heroku.com/<app>/<process-type>
-# heroku container:release web
-
-# for f in `docker images -q`; do docker image rm -f $f; done
-# docker system prune -a
-
 function foobar
 {
   echo $1 | awk '{ for(i=1;i<=NF;i++) printf("%c",$i); print ""; }'
@@ -76,3 +65,16 @@ steganographer static/favicon.png -r
 
 #
 honcho start -f Procfile.honcho
+
+# gcp: v2018-us-central1/europe-west1
+# aws: us-east-1/us-west-2
+# gigalixir create -n nov28 --cloud aws --region us-west-2
+
+# docker tag <image> registry.heroku.com/<app>/web
+# docker push registry.heroku.com/<app>/<process-type>
+# heroku container:release web
+
+# for f in `docker images -q`; do docker image rm -f $f; done
+# docker system prune -a
+
+# steganographer inputImage.png -f fileToHide.zip
