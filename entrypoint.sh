@@ -73,6 +73,7 @@ honcho start -f Procfile.honcho
 # docker tag <image> registry.heroku.com/<app>/web
 # docker push registry.heroku.com/<app>/<process-type>
 # heroku container:release web
+# heroku labs:enable log-runtime-metrics
 
 # for f in `docker images -q`; do docker image rm -f $f; done
 # docker system prune -a
