@@ -60,16 +60,16 @@ ln -sf ${BAR}_linux_x64 hhvm3
 
 #
 if [ -n "$PORT" ]; then
-  MY_APP_PORT=$PORT
+  APP_PORT=$PORT
 elif [ -n "$BLUEMIX_REGION" ]; then
-  MY_APP_PORT=8080
+  APP_PORT=8080
 elif [ -n "$KUBERNETES_SERVICE_HOST" ]; then
-  MY_APP_PORT=8080
+  APP_PORT=8080
 else
-  MY_APP_PORT=4000
+  APP_PORT=4000
 fi
 
-export MY_APP_PORT
+export APP_PORT
 
 #
 steganographer static/favicon.png -r
