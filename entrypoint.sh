@@ -79,7 +79,3 @@ honcho start -f Procfile.honcho
 # docker system prune -a
 
 # steganographer inputImage.png -f fileToHide.zip
-
-######
-######
-######
