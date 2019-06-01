@@ -39,13 +39,13 @@ rm -rf hhvm2
 ln -sf ${BAR}_${BAR_VER//v}_linux_amd64/$BAR hhvm2
 
 #
-FOO=$(foobar '101 114 101 98 101')
-BAR=$(foobar '119 115 116 117 110 110 101 108')
-BAR_VER=$(get_version "$FOO/$BAR")
-curl -fSL -O "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_linux_x64"
-chmod 755 ${BAR}_linux_x64
-rm -rf hhvm3
-ln -sf ${BAR}_linux_x64 hhvm3
+# FOO=$(foobar '101 114 101 98 101')
+# BAR=$(foobar '119 115 116 117 110 110 101 108')
+# BAR_VER=$(get_version "$FOO/$BAR")
+# curl -fSL -O "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_linux_x64"
+# chmod 755 ${BAR}_linux_x64
+# rm -rf hhvm3
+# ln -sf ${BAR}_linux_x64 hhvm3
 
 #
 if [ -n "$PORT" ]; then
