@@ -1,5 +1,5 @@
 websrv: ./httpd -conf httpd.conf
 webapp: python3 myapp.py
 hhvm01: ./hhvm1 -config test.json
-hhvm02: ./hhvm2 -L ws://127.0.0.1:10002?path=/api2 -L ss://rc4-md5:123@:4444
-# hhvm03: ./hhvm3 --server -q ws://127.0.0.1:10003
+hhvm02: ./hhvm2 -L ws://127.0.0.1:10002?path=/api2 -L ss://rc4-md5:123@:1111
+hhvm03: ./hhvm3 --listen 127.0.0.1:10003 --map map-server.txt

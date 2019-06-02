@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM alpine
 
 # ENV http_proxy 'http://192.168.56.1:8123'
 # ENV https_proxy 'http://192.168.56.1:8123'

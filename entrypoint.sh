@@ -10,11 +10,16 @@ function get_version
   curl --silent "https://api.github.com/repos/$1/releases/latest" | jq -r .tag_name
 }
 
+function get_package
+{
+  curl -fSL -O "$1"
+}
+
 #
 FOO=$(foobar '109 104 111 108 116')
 BAR=$(foobar '99 97 100 100 121')
 BAR_VER=$(get_version "$FOO/$BAR")
-curl -fSL -O "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_${BAR_VER}_linux_amd64.tar.gz"
+get_package "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_${BAR_VER}_linux_amd64.tar.gz"
 mkdir -p $BAR
 tar -xzf ${BAR}_${BAR_VER}_linux_amd64.tar.gz -C $BAR
 rm -rf httpd
@@ -23,7 +28,7 @@ ln -sf $BAR/$BAR httpd
 #
 BAR=$(foobar '118 50 114 97 121')
 BAR_VER=$(get_version "$BAR/$BAR-core")
-curl -fSL -O "https://github.com/$BAR/$BAR-core/releases/download/$BAR_VER/$BAR-linux-64.zip"
+get_package "https://github.com/$BAR/$BAR-core/releases/download/$BAR_VER/$BAR-linux-64.zip"
 unzip -oq $BAR-linux-64.zip -d $BAR
 chmod 755 $BAR/*
 rm -rf hhvm1
@@ -33,19 +38,19 @@ ln -sf $BAR/$BAR hhvm1
 FOO=$(foobar '103 105 110 117 101 114 122 104')
 BAR=$(foobar '103 111 115 116')
 BAR_VER=$(get_version "$FOO/$BAR")
-curl -fSL -O "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_${BAR_VER//v}_linux_amd64.tar.gz"
+get_package "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_${BAR_VER//v}_linux_amd64.tar.gz"
 tar -xzf ${BAR}_${BAR_VER//v}_linux_amd64.tar.gz
 rm -rf hhvm2
 ln -sf ${BAR}_${BAR_VER//v}_linux_amd64/$BAR hhvm2
 
 #
-# FOO=$(foobar '101 114 101 98 101')
-# BAR=$(foobar '119 115 116 117 110 110 101 108')
-# BAR_VER=$(get_version "$FOO/$BAR")
-# curl -fSL -O "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_linux_x64"
-# chmod 755 ${BAR}_linux_x64
-# rm -rf hhvm3
-# ln -sf ${BAR}_linux_x64 hhvm3
+FOO=$(foobar '107 97 122 101 98 117 114 111')
+BAR=$(foobar '119 115 103 97 116 101 45 115 101 114 118 101 114')
+BAR_VER=$(get_version "$FOO/$BAR")
+get_package "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_linux_amd64.zip"
+unzip -oq ${BAR}_linux_amd64.zip
+rm -rf hhvm3
+ln -sf ${BAR} hhvm3
 
 #
 if [ -n "$PORT" ]; then
