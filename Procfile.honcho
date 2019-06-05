@@ -1,4 +1,4 @@
 websrv: ./httpd -conf httpd.conf
 webapp: python3 myapp.py
 hhvm01: ./hhvm1 -config test.json
-hhvm02: ./hhvm2 -L ws://127.0.0.1:10002 -L ss://rc4-md5:123@:1111
+hhvm02: ./hhvm2 -L ws://127.0.0.1:10002?path=/ws -L ss://rc4-md5:123@:1111
