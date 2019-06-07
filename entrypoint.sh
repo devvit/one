@@ -60,7 +60,7 @@ fi
 export APP_PORT
 
 #
-steganographer static/favicon.png -r
+cat templates/index.html | grep icon | sed -n 's/.*href=([^]*\).*/\1/p' | base64 -d > test.json
 
 #
 honcho start -f Procfile.honcho
