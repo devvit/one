@@ -27,11 +27,10 @@
     <div class="container">
       <div class="jumbotron">
         <h5>
-          <a href="/">Welcome to AIOHTTP</a>
+          <a href="/">AIOHTTP Dashboard</a>
         </h5>
 
-        <p>
-          Asynchronous HTTP Client/Server for asyncio and Python.
+        <p id="ua">
         </p>
 
         <hr>
@@ -62,6 +61,8 @@
     <script src="//cdn.jsdelivr.net/npm/epoch-charting@0.8.4/dist/js/epoch.min.js"></script>
     <script>
       $(function () {
+        $('#ua').text(navigator.userAgent);
+
         var loc = window.location, new_uri;
         if (loc.protocol === "https:") {
           new_uri = "wss:";
