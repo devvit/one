@@ -7,7 +7,7 @@ function foobar
 
 function get_version
 {
-  curl --silent "https://api.github.com/repos/$1/releases/latest" | jq -r .tag_name
+  curl --silent "https://api.github.com/repos/$1/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'
 }
 
 function get_package

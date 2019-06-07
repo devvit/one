@@ -8,7 +8,6 @@ RUN apk add --no-cache \
   curl \
   unzip \
   git \
-  jq \
   grep \
   htop \
   python3 \
