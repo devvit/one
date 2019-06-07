@@ -6,9 +6,6 @@ FROM alpine
 RUN apk add --no-cache \
   bash \
   curl \
-  unzip \
-  git \
-  grep \
   python3 \
   && apk add --no-cache --virtual .build-deps build-base linux-headers musl-dev python3-dev
 
