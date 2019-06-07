@@ -9,10 +9,8 @@ RUN apk add --no-cache \
   unzip \
   git \
   grep \
-  htop \
   python3 \
-  gd \
-  && apk add --no-cache --virtual .build-deps build-base linux-headers musl-dev python3-dev zlib-dev libpng-dev libjpeg-turbo-dev
+  && apk add --no-cache --virtual .build-deps build-base linux-headers musl-dev python3-dev
 
 COPY . /app
 RUN chmod 777 /app
