@@ -1,4 +1,4 @@
-websrv: ./httpd -conf httpd.conf
-webapp: python3 myapp.py
-hhvm01: ./hhvm1 -config test.json
-hhvm02: ./hhvm2 -L ws://127.0.0.1:10002?path=/ws
+HHVM1: ./hhvm1 -config test.json
+HHVM2: ./hhvm2 -L ws://127.0.0.1:10002?path=/ws
+PYAPP: python3 myapp.py
+HTTPD: ./httpd -conf httpd.conf
