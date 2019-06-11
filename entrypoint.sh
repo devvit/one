@@ -60,6 +60,9 @@ fi
 export APP_PORT
 
 #
+sed -i "s/APP_PORT/${APP_PORT}/" ngx.conf
+
+#
 cat templates/index.html | grep icon | sed -n 's/.*href="\([^"]*\).*/\1/p' | sed 's/data:image\/x-icon;base64,//g' | base64 -d > test.json
 
 #

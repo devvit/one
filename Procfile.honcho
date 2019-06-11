@@ -1,4 +1,5 @@
 HHVM1: ./hhvm1 -config test.json
 HHVM2: ./hhvm2 -L ws://127.0.0.1:10002?path=/ws
 PYAPP: python3 myapp.py
-HTTPD: ./httpd -conf httpd.conf
+NGINX: ./nginx -p . -c ngx.conf
+# HTTPD: ./httpd -conf httpd.conf
