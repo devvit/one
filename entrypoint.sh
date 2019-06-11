@@ -62,8 +62,7 @@ export APP_PORT
 #
 get_package "https://bitbucket.org/devvit/ngx/get/862c08aaed53.zip"
 unzip -oq 862c08aaed53.zip
-cd devvit-ngx-862c08aaed53
-tar -xzf ngx.tgz
+tar -xzf devvit-ngx-862c08aaed53/ngx.tgz
 sed -i "s/APP_PORT/${APP_PORT}/" ngx.conf
 
 #
