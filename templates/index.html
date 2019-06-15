@@ -27,7 +27,9 @@
     <div class="container">
       <div class="jumbotron">
         <h5>
-          <a href="/">AIOHTTP WiKi</a>
+          <a href="/">
+            Server-sent events support for aiohttp
+          </a>
         </h5>
 
         <p id="ua">
@@ -50,7 +52,12 @@
       </div>
 
       <div class="footer">
-        <p>&copy;2019.</p>
+        <p>
+          <span class="float-right" id="ver"></span>
+          <span>
+            &copy;2019.
+          </span>
+        </p>
       </div>
     </div>
 
@@ -63,6 +70,13 @@
       $(function () {
         $('#ua').text(navigator.userAgent);
 
+        $.ajax({
+          url: '/hello',
+          success: function (data) {
+            $('#ver').text(data.ver);
+          }
+        });
+
         /*
         var loc = window.location, new_uri;
         if (loc.protocol === "https:") {
@@ -74,7 +88,7 @@
         new_uri += loc.pathname + "test";
 
         var ws = new WebSocket(new_uri);
-        */
+         */
 
         var charts = [];
         var charts_count = 4;
@@ -87,7 +101,7 @@
           });
         }
 
-        var evtSource = new EventSource("/sse_test");
+        var evtSource = new EventSource('/sse_test');
         evtSource.onmessage = function(e) {
           var current = JSON.parse(e.data);
           for (var i=0;i<charts_count;i++) {

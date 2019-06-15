@@ -23,12 +23,16 @@ async def on_prepare(request, response):
 
 @routes.get('/')
 @aiohttp_jinja2.template('index.html')
+async def home(request):
+    return dict()
+
+
+@routes.get('/hello')
 async def hello(request):
-    return dict(ver='0101')
+    return web.json_response(dict(ver='0617'))
 
 
 async def sse_test(request):
-    # loop = request.app.loop
     async with sse_response(request) as resp:
         while True:
             s0 = psutil.net_io_counters(pernic=True)[device].bytes_recv
@@ -42,6 +46,7 @@ async def sse_test(request):
                 dict(time=now, y=psutil.cpu_percent()),
                 dict(time=now, y=psutil.virtual_memory().percent)
             ]))
+
     return resp
 
 
@@ -55,7 +60,7 @@ async def ws_test(request):
 
 
 app = web.Application()
-app.on_response_prepare.append(on_prepare)
+# app.on_response_prepare.append(on_prepare)
 # app.add_routes([web.static('/static', 'static')])
 aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 app.router.add_route('GET', '/sse_test', sse_test)
