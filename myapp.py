@@ -29,7 +29,7 @@ async def home(request):
 
 @routes.get('/hello')
 async def hello(request):
-    return web.json_response(dict(ver='0617'))
+    return web.json_response(dict(ver='0606'))
 
 
 async def sse_test(request):
