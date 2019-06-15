@@ -63,6 +63,7 @@
       $(function () {
         $('#ua').text(navigator.userAgent);
 
+        /*
         var loc = window.location, new_uri;
         if (loc.protocol === "https:") {
           new_uri = "wss:";
@@ -73,6 +74,8 @@
         new_uri += loc.pathname + "test";
 
         var ws = new WebSocket(new_uri);
+        */
+
         var charts = [];
         var charts_count = 4;
 
@@ -84,12 +87,22 @@
           });
         }
 
+        var evtSource = new EventSource("/sse_test");
+        evtSource.onmessage = function(e) {
+          var current = JSON.parse(e.data);
+          for (var i=0;i<charts_count;i++) {
+            charts[i].push([current[i]]);
+          }
+        };
+
+        /*
         ws.onmessage = function(msg) {
           var current = JSON.parse(msg.data);
           for (var i=0;i<charts_count;i++) {
             charts[i].push([current[i]]);
           }
         };
+         */
       });
     </script>
 

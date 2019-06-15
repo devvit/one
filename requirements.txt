@@ -1,5 +1,6 @@
 aiohttp
 aiohttp-devtools
+aiohttp-sse
 aiohttp_jinja2
 honcho
 psutil
