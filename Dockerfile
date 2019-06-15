@@ -1,4 +1,4 @@
-FROM alpine
+FROM node:lts-alpine
 
 # ENV http_proxy 'http://192.168.56.1:8123'
 # ENV https_proxy 'http://192.168.56.1:8123'
@@ -9,6 +9,8 @@ RUN apk add --no-cache \
   curl \
   htop \
   python3 \
+  nodejs \
+  git \
   && apk add --no-cache --virtual .build-deps build-base linux-headers musl-dev python3-dev
 
 COPY . /app

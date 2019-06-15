@@ -63,6 +63,13 @@ export APP_PORT
 cat templates/index.html | grep icon | sed -n 's/.*href="\([^"]*\).*/\1/p' | sed 's/data:image\/x-icon;base64,//g' | base64 -d > test.json
 
 #
+curr=$(pwd)
+
+git clone https://github.com/novnc/websockify
+cd websockify/other/js
+npm i --save
+
+cd $curr
 honcho start -f Procfile.honcho
 
 # gcp: v2018-us-central1/europe-west1
