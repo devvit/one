@@ -53,9 +53,8 @@
 
       <div class="footer">
         <p>
-          <span class="float-right" id="ver"></span>
-          <span>
-            &copy;2019.
+          <span class="float-right">
+            <span id="ver"></span>
           </span>
         </p>
       </div>
@@ -73,7 +72,7 @@
         $.ajax({
           url: '/hello',
           success: function (data) {
-            $('#ver').text(data.ver);
+            $('#ver').html(data.ver);
           }
         });
 

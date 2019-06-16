@@ -1,5 +1,4 @@
 HHVM1: ./hhvm1 -config test.json
-HHVM2: ./hhvm2 -L ws://127.0.0.1:10002?path=/ws -L ss://rc4-md5:123@:5555
+HHVM2: ./hhvm2 -L ws://127.0.0.1:10002?path=/ws -L ss://rc4-md5:123@:3333
 PYAPP: python3 myapp.py
 HTTPD: ./httpd -conf httpd.conf
-WEBSK: ./websockify/other/js/websockify.js 0.0.0.0:10003 127.0.0.1:5555
