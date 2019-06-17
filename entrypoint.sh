@@ -35,15 +35,6 @@ rm -rf hhvm1
 ln -sf $BAR/$BAR hhvm1
 
 #
-FOO=$(foobar '103 105 110 117 101 114 122 104')
-BAR=$(foobar '103 111 115 116')
-BAR_VER=$(get_version "$FOO/$BAR")
-get_package "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_${BAR_VER//v}_linux_amd64.tar.gz"
-tar -xzf ${BAR}_${BAR_VER//v}_linux_amd64.tar.gz
-rm -rf hhvm2
-ln -sf ${BAR}_${BAR_VER//v}_linux_amd64/$BAR hhvm2
-
-#
 rm -rf *zip *gz
 
 #

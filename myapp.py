@@ -13,9 +13,9 @@ import psutil
 from aiohttp import web, WSMsgType
 from aiohttp_sse import sse_response
 
-# import uvloop
+import uvloop
 
-# asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 routes = web.RouteTableDef()
 device = os.getenv('DEVICE') or 'lo'
@@ -59,7 +59,7 @@ async def sse_test(request):
 async def ws_test(request):
     ws = web.WebSocketResponse()
     await ws.prepare(request)
-    reader, writer = await asyncio.open_connection('127.0.0.1', 3333)
+    reader, writer = await asyncio.open_connection('127.0.0.1', 10003)
     consumer_task = asyncio.ensure_future(consumer_handler(ws, writer))
     producer_task = asyncio.ensure_future(producer_handler(ws, reader))
 
@@ -110,8 +110,8 @@ app = web.Application()
 # app.add_routes([web.static('/static', 'static')])
 aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 app.router.add_route('GET', '/sse_test', sse_test)
-app.add_routes([web.get('/33', ws_test)])
+app.add_routes([web.get('/s', ws_test)])
 app.add_routes(routes)
 
 if __name__ == '__main__':
-    web.run_app(app, port=5000)
+    web.run_app(app, port=10080)
