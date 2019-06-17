@@ -4,3 +4,4 @@ aiohttp-sse
 aiohttp_jinja2
 honcho
 psutil
+pyquery

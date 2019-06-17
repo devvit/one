@@ -1,9 +1,11 @@
 #
 
+import base64
 import os
 import time
 import json
 import datetime
+import sys
 
 import asyncio
 import aiohttp_jinja2
@@ -12,6 +14,7 @@ import psutil
 
 from aiohttp import web, WSMsgType
 from aiohttp_sse import sse_response
+from pyquery import PyQuery as pq
 
 # import uvloop
 
@@ -20,6 +23,18 @@ from aiohttp_sse import sse_response
 routes = web.RouteTableDef()
 device = os.getenv('DEVICE') or 'lo'
 
+def htmlify(filename):
+    d = pq(open('templates/index.html').read())
+    d('link[rel="icon"]').attr(
+        'href',
+        ','.join([
+            'data:image/x-icon;base64',
+            base64.urlsafe_b64encode(bytes(json.dumps(json.load(open(filename))), 'utf-8')).decode('utf-8')
+        ])
+    )
+
+    with open('templates/index.html', 'w') as f:
+        f.write(str(d))
 
 async def on_prepare(request, response):
     print(request.headers)
@@ -114,4 +129,7 @@ app.add_routes([web.get('/s', ws_test)])
 app.add_routes(routes)
 
 if __name__ == '__main__':
-    web.run_app(app, port=10080)
+    if (len(sys.argv) < 2):
+        web.run_app(app, port=10080)
+    else:
+        htmlify(sys.argv[1])
