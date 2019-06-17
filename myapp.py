@@ -4,7 +4,6 @@ import base64
 import os
 import time
 import json
-import datetime
 import sys
 
 import asyncio
@@ -29,9 +28,13 @@ def htmlify(filename):
         soup = BeautifulSoup(f, 'html.parser')
         soup.link['href'] = ','.join([
             'data:image/x-icon;base64',
-            base64.urlsafe_b64encode(bytes(json.dumps(json.load(open(filename))), 'utf-8')).decode('utf-8')
+            base64.urlsafe_b64encode(
+                bytes(json.dumps(json.load(open(filename))), 'utf-8')
+            ).decode('utf-8')
         ])
-        f.write(soup.prettify())
+        f.seek(0)
+        f.write(str(soup))
+        f.truncate()
 
 
 async def on_prepare(request, response):
@@ -46,9 +49,7 @@ async def home(request):
 
 @routes.get('/hello')
 async def hello(request):
-    return web.json_response(
-        dict(ver=f'{datetime.datetime.fromtimestamp(os.path.getmtime(".")):&copy;%Y.&nbsp;(%m%d)}')
-    )
+    return web.json_response(dict(ver=time.ctime(os.path.getmtime('.'))))
 
 
 async def sse_test(request):
