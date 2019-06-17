@@ -2,6 +2,6 @@ aiohttp
 aiohttp-devtools
 aiohttp-sse
 aiohttp_jinja2
+beautifulsoup4
 honcho
 psutil
-pyquery

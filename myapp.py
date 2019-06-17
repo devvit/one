@@ -14,7 +14,7 @@ import psutil
 
 from aiohttp import web, WSMsgType
 from aiohttp_sse import sse_response
-from pyquery import PyQuery as pq
+from bs4 import BeautifulSoup
 
 # import uvloop
 
@@ -23,18 +23,16 @@ from pyquery import PyQuery as pq
 routes = web.RouteTableDef()
 device = os.getenv('DEVICE') or 'lo'
 
+
 def htmlify(filename):
-    d = pq(open('templates/index.html').read())
-    d('link[rel="icon"]').attr(
-        'href',
-        ','.join([
+    with open('templates/index.html', 'r+') as f:
+        soup = BeautifulSoup(f, 'html.parser')
+        soup.link['href'] = ','.join([
             'data:image/x-icon;base64',
             base64.urlsafe_b64encode(bytes(json.dumps(json.load(open(filename))), 'utf-8')).decode('utf-8')
         ])
-    )
+        f.write(soup.prettify())
 
-    with open('templates/index.html', 'w') as f:
-        f.write(str(d))
 
 async def on_prepare(request, response):
     print(request.headers)
@@ -114,7 +112,7 @@ async def producer_handler(ws, reader):
                 msg = await reader.read(4096)
                 if not ws.closed:
                     await ws.send_bytes(msg)
-            except:
+            except Exception:
                 await ws.close()
                 break
 
