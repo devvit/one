@@ -13,9 +13,9 @@ import psutil
 from aiohttp import web, WSMsgType
 from aiohttp_sse import sse_response
 
-import uvloop
+# import uvloop
 
-asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+# asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 routes = web.RouteTableDef()
 device = os.getenv('DEVICE') or 'lo'
