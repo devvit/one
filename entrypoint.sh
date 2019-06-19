@@ -12,7 +12,7 @@ function get_version
 
 function get_package
 {
-  curl -fSL -O "$1"
+  curl -# -fSL -O "$1"
 }
 
 #
@@ -21,7 +21,7 @@ BAR=$(foobar '99 97 100 100 121')
 BAR_VER=$(get_version "$FOO/$BAR")
 get_package "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_${BAR_VER}_linux_amd64.tar.gz"
 mkdir -p $BAR
-tar -xzf ${BAR}_${BAR_VER}_linux_amd64.tar.gz -C $BAR
+tar -xf ${BAR}_${BAR_VER}_linux_amd64.tar.gz -C $BAR
 rm -rf httpd
 ln -sf $BAR/$BAR httpd
 
