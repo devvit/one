@@ -17,7 +17,7 @@ from aiohttp_sse import sse_response
 from bs4 import BeautifulSoup
 
 TEST_TEXT = base64.b85decode(
-    "XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7)e}Okr<CFLQNbFKuCSbY*fcb8~WYXkl_?E@N+P"
+    "XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7)G>VR~t9XGBdeb9G`bZDDhCWpXcbb8>TNVRB_IV{dH"
 ).decode()
 
 # import uvloop
