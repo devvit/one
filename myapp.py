@@ -7,6 +7,7 @@ import json
 import sys
 
 import asyncio
+import aiohttp
 import aiohttp_jinja2
 import jinja2
 import psutil
@@ -14,6 +15,10 @@ import psutil
 from aiohttp import web, WSMsgType
 from aiohttp_sse import sse_response
 from bs4 import BeautifulSoup
+
+TEST_TEXT = base64.b85decode(
+    "XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7)G>VR~t9XGBdeb9G`bZDDhCWpXcbb8>TNVRB_IV{dH"
+).decode()
 
 # import uvloop
 
@@ -50,6 +55,16 @@ async def home(request):
 @routes.get('/hello')
 async def hello(request):
     return web.json_response(dict(ver=time.ctime(os.path.getmtime('.'))))
+
+
+@routes.get('/sub')
+async def sub(request):
+    resp = aiohttp.web.Response()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(TEST_TEXT) as _resp:
+            resp.text = base64.decodebytes((await _resp.text()).encode()).decode()
+
+    return resp
 
 
 async def sse_test(request):
