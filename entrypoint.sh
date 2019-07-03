@@ -16,7 +16,7 @@ function get_package
 }
 
 #
-FOO=$(foobar '109 104 111 108 116')
+FOO=$(foobar '99 97 100 100 121 115 101 114 118 101 114')
 BAR=$(foobar '99 97 100 100 121')
 BAR_VER=$(get_version "$FOO/$BAR")
 get_package "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}_${BAR_VER}_linux_amd64.tar.gz"
@@ -33,6 +33,16 @@ unzip -oq $BAR-linux-64.zip -d $BAR
 chmod 755 $BAR/*
 rm -rf hhvm1
 ln -sf $BAR/$BAR hhvm1
+
+#
+FOO=$(foobar '121 105 110 113 105 119 101 110')
+BAR=$(foobar '103 115 110 111 118 97')
+BAR_VER=$(get_version "$FOO/$BAR")
+get_package "https://github.com/$FOO/$BAR/releases/download/${BAR_VER}/${BAR}_linux_amd64-latest.tar.bz2"
+mkdir -p $BAR
+tar -xf ${BAR}_linux_amd64-latest.tar.bz2 -C $BAR
+rm -rf hhvm2
+ln -sf $BAR/$BAR hhvm2
 
 #
 rm -rf *zip *gz
