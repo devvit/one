@@ -161,7 +161,7 @@ app.add_routes(routes)
 
 if __name__ == '__main__':
     if (len(sys.argv) < 2):
-        asyncio.ensure_future(start_caddy())
+        # asyncio.ensure_future(start_caddy())
         web.run_app(app, port=10080)
     else:
         htmlify(sys.argv[1])
