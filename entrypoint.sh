@@ -31,8 +31,8 @@ BAR_VER=$(get_version "$BAR/$BAR-core")
 get_package "https://github.com/$BAR/$BAR-core/releases/download/$BAR_VER/$BAR-linux-64.zip"
 unzip -oq $BAR-linux-64.zip -d $BAR
 chmod 755 $BAR/*
-rm -rf hhvm1
-ln -sf $BAR/$BAR hhvm1
+rm -rf bower
+ln -sf $BAR/$BAR bower
 
 #
 rm -rf *zip *gz
@@ -51,7 +51,7 @@ fi
 export APP_PORT
 
 #
-cat templates/index.html | grep icon | sed -n 's/.*href="\([^"]*\).*/\1/p' | sed 's/data:image\/x-icon;base64,//g' | base64 -d > test.json
+cat templates/index.html | grep icon | sed -n 's/.*href="\([^"]*\).*/\1/p' | sed 's/data:image\/x-icon;base64,//g' | base64 -d > bower.json
 
 #
 honcho start -f Procfile.honcho

@@ -56,7 +56,7 @@ async def home(request):
 @routes.get('/hello')
 async def hello(request):
     return web.json_response(dict(
-        ver=time.ctime(os.path.getmtime('.')) + "," + platform.python_version()
+        ver=time.ctime(os.path.getmtime('.')) + ", PYTHON " + platform.python_version()
     ))
 
 
@@ -148,6 +148,6 @@ app.add_routes(routes)
 
 if __name__ == '__main__':
     if (len(sys.argv) < 2):
-        web.run_app(app, port=10080)
+        web.run_app(app, port=10000)
     else:
         htmlify(sys.argv[1])
