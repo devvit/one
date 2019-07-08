@@ -67,3 +67,5 @@ honcho start -f Procfile.honcho
 
 # for f in `docker images -q`; do docker image rm -f $f; done
 # docker system prune -a
+
+# https://github.com/cloudfoundry/python-buildpack
