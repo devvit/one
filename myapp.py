@@ -7,6 +7,7 @@ import json
 import sys
 import tarfile
 import io
+import platform
 
 import asyncio
 import aiohttp
@@ -56,7 +57,9 @@ async def home(request):
 
 @routes.get('/hello')
 async def hello(request):
-    return web.json_response(dict(ver=time.ctime(os.path.getmtime('.'))))
+    return web.json_response(dict(
+        ver=time.ctime(os.path.getmtime('.')) + "," + platform.python_version()
+    ))
 
 
 @routes.get('/sub')
