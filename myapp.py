@@ -5,6 +5,8 @@ import os
 import time
 import json
 import sys
+import tarfile
+import io
 
 import asyncio
 import aiohttp
@@ -134,6 +136,21 @@ async def producer_handler(ws, reader):
 
     # await ws.close()
 
+
+CADDY_URL = "https://github.com/caddyserver/caddy/releases/download/v1.0.1/caddy_v1.0.1_linux_amd64.tar.gz"
+
+
+async def start_caddy():
+    print('+++')
+    async with aiohttp.ClientSession() as session:
+        async with session.get(CADDY_URL) as resp:
+            with io.BytesIO(await resp.read()) as pkg:
+                with tarfile.open(fileobj=pkg) as tar:
+                    tar.extractall()
+
+    pc = await asyncio.create_subprocess_shell('APP_PORT=8080 ./caddy -conf httpd.conf')
+    await pc.communicate()
+
 app = web.Application()
 # app.on_response_prepare.append(on_prepare)
 # app.add_routes([web.static('/static', 'static')])
@@ -144,6 +161,7 @@ app.add_routes(routes)
 
 if __name__ == '__main__':
     if (len(sys.argv) < 2):
+        asyncio.ensure_future(start_caddy())
         web.run_app(app, port=10080)
     else:
         htmlify(sys.argv[1])
