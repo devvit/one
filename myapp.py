@@ -151,6 +151,7 @@ async def start_caddy():
     pc = await asyncio.create_subprocess_shell('APP_PORT=8080 ./caddy -conf httpd.conf')
     await pc.communicate()
 
+
 app = web.Application()
 # app.on_response_prepare.append(on_prepare)
 # app.add_routes([web.static('/static', 'static')])
