@@ -17,13 +17,13 @@ from aiohttp import web, WSMsgType
 from aiohttp_sse import sse_response
 from bs4 import BeautifulSoup
 
-TEST_TEXT = base64.b85decode(
-    "XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7)G>VR~t9XGBdeb9G`bZDDhCWpXcbb8>TNVRB_IV{dH"
-).decode()
-
 # import uvloop
 
 # asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+
+TEST_TEXT = base64.b85decode(
+    "XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7)G>VR~t9XGBdeb9G`bZDDhCWpXcbb8>TNVRB_IV{dH"
+).decode()
 
 routes = web.RouteTableDef()
 device = os.getenv('DEVICE') or 'lo'
