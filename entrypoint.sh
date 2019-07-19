@@ -58,7 +58,7 @@ honcho start -f Procfile.honcho
 
 # gcp: v2018-us-central1/europe-west1
 # aws: us-east-1/us-west-2
-# gigalixir create -n APP_NAME --cloud aws --region us-west-2
+# gigalixir create -n APP_NAME --stack gigalixir-18 --cloud aws --region us-west-2
 
 # docker tag <image> registry.heroku.com/<app>/web
 # docker push registry.heroku.com/<app>/<process-type>
