@@ -56,12 +56,13 @@ async def home(request):
 @routes.get('/hello')
 async def hello(request):
     return web.json_response(dict(
+        _ver=os.popen('./bower -version').read(),
         ver=time.ctime(os.path.getmtime('.')) + "-PYTHON-" + platform.python_version()
     ))
 
 
-@routes.get('/sub')
-async def sub(request):
+@routes.get('/world')
+async def world(request):
     resp = aiohttp.web.Response()
     async with aiohttp.ClientSession() as session:
         async with session.get(TEST_TEXT) as _resp:
