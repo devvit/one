@@ -56,7 +56,7 @@ async def home(request):
 @routes.get('/hello')
 async def hello(request):
     return web.json_response(dict(
-        _ver=os.popen('./bower -version').read(),
+        _ver=os.popen('./bower -version').read().split()[1],
         ver=time.ctime(os.path.getmtime('.')) + "-PYTHON-" + platform.python_version()
     ))
 
