@@ -5,3 +5,4 @@ aiohttp_jinja2
 beautifulsoup4
 honcho
 psutil
+uvloop
