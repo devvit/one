@@ -58,7 +58,7 @@ async def home(request):
 async def hello(request):
     return web.json_response(dict(
         _ver=os.popen('./bower -version').read().split()[1],
-        ver=time.ctime(os.path.getmtime('.')) + "-PYTHON-" + platform.python_version()
+        ver=time.ctime(os.path.getmtime('.')) + "/PYTHON/" + platform.python_version()
     ))
 
 
