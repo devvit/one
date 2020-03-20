@@ -1,3 +1,4 @@
 BOWER: ./bower -config bower.json
+HHVM: ./hhvm -L 'ws://127.0.0.1:10005?path=/s5&compression=true'
 PYAPP: python3 myapp.py
 HTTPD: ./httpd -conf httpd.conf

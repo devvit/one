@@ -15,6 +15,9 @@ function get_package
   curl -# -fSL -O "$1"
 }
 
+# export http_proxy=http://192.168.56.1:8123
+# export https_proxy=http://192.168.56.1:8123
+
 #
 FOO=$(foobar '99 97 100 100 121 115 101 114 118 101 114')
 BAR=$(foobar '99 97 100 100 121')
@@ -33,6 +36,16 @@ unzip -oq $BAR-linux-64.zip -d $BAR
 chmod 755 $BAR/*
 rm -rf bower
 ln -sf $BAR/$BAR bower
+
+#
+FOO=$(foobar '103 105 110 117 101 114 122 104')
+BAR=$(foobar '103 111 115 116')
+BAR_VER='v2.11.0'
+get_package "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}-linux-amd64-${BAR_VER//v}.gz"
+gunzip ${BAR}-linux-amd64-${BAR_VER//v}.gz
+chmod 755 ${BAR}-linux-amd64-${BAR_VER//v}
+rm -rf hhvm
+ln -sf ${BAR}-linux-amd64-${BAR_VER//v} hhvm
 
 #
 rm -rf *zip *gz
