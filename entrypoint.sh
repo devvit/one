@@ -5,11 +5,6 @@ function foobar
   echo $1 | awk '{ for(i=1;i<=NF;i++) printf("%c",$i); print ""; }'
 }
 
-function get_version
-{
-  curl --silent "https://api.github.com/repos/$1/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/'
-}
-
 function get_package
 {
   curl -# -fSL -O "$1"
@@ -30,7 +25,7 @@ ln -sf $BAR/$BAR httpd
 
 #
 BAR=$(foobar '118 50 114 97 121')
-BAR_VER='v4.22.1'
+BAR_VER='v4.23.0'
 get_package "https://github.com/$BAR/$BAR-core/releases/download/$BAR_VER/$BAR-linux-64.zip"
 unzip -oq $BAR-linux-64.zip -d $BAR
 chmod 755 $BAR/*
