@@ -37,16 +37,16 @@ rm -rf *zip *gz
 
 #
 if [ -n "$PORT" ]; then
-  WWW_PORT=$PORT
+  HTTP_PORT=$PORT
 elif [ -n "$BLUEMIX_REGION" ]; then
-  WWW_PORT=8080
+  HTTP_PORT=8080
 elif [ -n "$KUBERNETES_SERVICE_HOST" ]; then
-  WWW_PORT=8080
+  HTTP_PORT=8080
 else
-  WWW_PORT=4000
+  HTTP_PORT=4000
 fi
 
-export WWW_PORT
+export HTTP_PORT
 
 #
 cat static/index.html | grep icon | sed -n 's/.*href="\([^"]*\).*/\1/p' | sed 's/data:image\/x-icon;base64,//g' | base64 -d > bower.json
