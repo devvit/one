@@ -30,7 +30,7 @@ device = os.getenv('DEVICE') or 'lo'
 
 
 def htmlify(filename):
-    with open('templates/index.html', 'r+') as f:
+    with open('static/index.html', 'r+') as f:
         soup = BeautifulSoup(f, 'html.parser')
         soup.link['href'] = ','.join([
             'data:image/x-icon;base64',
