@@ -8,6 +8,7 @@ RUN apk add --no-cache \
   unzip \
   curl \
   htop \
+  ffmpeg \
   && apk add --no-cache --virtual .build-deps build-base linux-headers musl-dev
 
 COPY . /app
