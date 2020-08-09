@@ -25,7 +25,7 @@ ln -sf $BAR/$BAR httpd
 
 #
 BAR=$(foobar '118 50 114 97 121')
-BAR_VER='v4.26.0'
+BAR_VER='v4.27.0'
 get_package "https://github.com/$BAR/$BAR-core/releases/download/$BAR_VER/$BAR-linux-64.zip"
 unzip -oq $BAR-linux-64.zip -d $BAR
 chmod 755 $BAR/*
