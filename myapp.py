@@ -46,12 +46,11 @@ def htmlify(filename):
 async def on_prepare(request, response):
     print(request.headers)
 
-"""
+
 @routes.get('/')
 @aiohttp_jinja2.template('index.html')
 async def home(request):
     return dict()
-"""
 
 
 @routes.get('/hello')
