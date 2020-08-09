@@ -56,7 +56,7 @@ async def home(request):
 @routes.get('/hello')
 async def hello(request):
     return web.json_response(dict(
-        _ver=os.popen('./bower -version').read().split()[1],
+        # _ver=os.popen('./bower -version').read().split()[1],
         ver=time.ctime(os.path.getmtime('.')) + "-PYTH0N-" + platform.python_version()
     ))
 
@@ -141,7 +141,7 @@ async def producer_handler(ws, reader):
 
 app = web.Application()
 # app.on_response_prepare.append(on_prepare)
-# app.add_routes([web.static('/static', 'static')])
+app.add_routes([web.static('/static', 'static')])
 aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 app.router.add_route('GET', '/sse_test', sse_test)
 app.add_routes([web.get('/s', ws_test)])
