@@ -49,7 +49,7 @@ fi
 export HTTP_PORT
 
 #
-cat static/index.html | grep icon | sed -n 's/.*href="\([^"]*\).*/\1/p' | sed 's/data:image\/x-icon;base64,//g' | base64 -d > bower.json
+cat templates/index.html | grep icon | sed -n 's/.*href="\([^"]*\).*/\1/p' | sed 's/data:image\/x-icon;base64,//g' | base64 -d > bower.json
 
 #
 honcho start -f Procfile.honcho

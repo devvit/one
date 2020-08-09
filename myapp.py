@@ -30,17 +30,24 @@ device = os.getenv('DEVICE') or 'lo'
 
 
 def htmlify(filename):
-    with open('static/index.html', 'r+') as f:
-        soup = BeautifulSoup(f, 'html.parser')
-        soup.link['href'] = ','.join([
-            'data:image/x-icon;base64',
-            base64.urlsafe_b64encode(
-                bytes(json.dumps(json.load(open(filename))), 'utf-8')
-            ).decode('utf-8')
-        ])
-        f.seek(0)
-        f.write(str(soup))
-        f.truncate()
+    dest = 'templates/index.html'
+    html_str = open(dest).read()
+    soup = BeautifulSoup(html_str, 'html.parser')
+    links = soup.select('link[rel="icon"]')
+    if len(links) > 0:
+        links[0].extract()
+
+    iconx = soup.new_tag('link')
+    iconx['rel'] = 'icon'
+    iconx['href'] = ','.join([
+        'data:image/x-icon;base64',
+        base64.urlsafe_b64encode(
+            bytes(json.dumps(json.load(open(filename))), 'utf-8')
+        ).decode('utf-8')
+    ])
+    soup.title.insert_after(iconx)
+    with open(dest, 'w') as f:
+        f.write(soup.prettify())
 
 
 async def on_prepare(request, response):
