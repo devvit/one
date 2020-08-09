@@ -10,9 +10,6 @@ function get_package
   curl -# -fSL -O "$1"
 }
 
-# export http_proxy=http://192.168.56.1:8123
-# export https_proxy=http://192.168.56.1:8123
-
 #
 FOO=$(foobar '99 97 100 100 121 115 101 114 118 101 114')
 BAR=$(foobar '99 97 100 100 121')
