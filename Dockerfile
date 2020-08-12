@@ -14,6 +14,8 @@ COPY . /app
 RUN chmod 777 /app
 WORKDIR /app
 
+RUN bash prepare.sh
+
 RUN pip3 install --no-cache-dir -U -r /app/requirements.txt
 
 RUN apk del .build-deps
