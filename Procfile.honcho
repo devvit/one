@@ -1,4 +1,4 @@
 # BOWER: ./bower -config bower.json
-BOWER: ./bower --server --upgradePathPrefix=v ws://0.0.0.0:10001
+BOWER: ./bower --server ws://0.0.0.0:10001
 PYAPP: python3 myapp.py
 HTTPD: ./httpd -conf httpd.conf
