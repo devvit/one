@@ -25,7 +25,7 @@ TEST_TEXT0 = base64.b85decode(
     'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb8~WYbz%'
 ).decode()
 TEST_TEXT1 = base64.b85decode(
-    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb8{_obz%'
+    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7+6jYh`XRFfeB?L3MO*Q&UneZDDhCWpXcXZft38Wd'
 ).decode()
 
 routes = web.RouteTableDef()
