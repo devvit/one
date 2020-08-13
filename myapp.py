@@ -23,7 +23,6 @@ from bs4 import BeautifulSoup
 
 TEST_LIST = [
     'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb8~WYbz%',
-    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb8{_obz%',
     'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb~18dc>',
     'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7+6jYh`XRFfeB?L3MO*Q&UneZDDhCWpXcXZft38Wd'
 ]
