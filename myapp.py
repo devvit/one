@@ -78,11 +78,11 @@ async def world(request):
 
     async with aiohttp.ClientSession() as session:
         async with session.get(TEST_TEXT0) as _resp:
-            resp.text += base64.decodebytes((await _resp.text()).encode()).decode()
+            resp.text += base64.b64decode(((await _resp.text()) + '===').encode()).decode()
 
     async with aiohttp.ClientSession() as session:
         async with session.get(TEST_TEXT1) as _resp:
-            resp.text += base64.decodebytes((await _resp.text()).encode()).decode()
+            resp.text += base64.b64decode(((await _resp.text()) + '===').encode()).decode()
 
     return resp
 
