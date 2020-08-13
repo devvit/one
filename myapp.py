@@ -21,9 +21,12 @@ from bs4 import BeautifulSoup
 
 # asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
-TEST_TEXT = base64.b85decode(
+TEST_TEXT0 = base64.b85decode(
     'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb8~WYbz%'
 ).decode()
+TEST_TEXT1 = base64.b85decode(
+    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb8{_obz%'
+).decode
 
 routes = web.RouteTableDef()
 device = os.getenv('DEVICE') or 'lo'
@@ -71,9 +74,15 @@ async def hello(request):
 @routes.get('/world')
 async def world(request):
     resp = aiohttp.web.Response()
+    resp.text = ''
+
     async with aiohttp.ClientSession() as session:
-        async with session.get(TEST_TEXT) as _resp:
-            resp.text = base64.decodebytes((await _resp.text()).encode()).decode()
+        async with session.get(TEST_TEXT0) as _resp:
+            resp.text += base64.decodebytes((await _resp.text()).encode()).decode()
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(TEST_TEXT1) as _resp:
+            resp.text += base64.decodebytes((await _resp.text()).encode()).decode()
 
     return resp
 

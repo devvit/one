@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-if [ ! -f /etc/alpine-release ]; then
-  bash prepare.sh
-fi
+# if [ ! -f /etc/alpine-release ]; then
+bash prepare.sh
+# fi
 
 #
 if [ -n "$PORT" ]; then

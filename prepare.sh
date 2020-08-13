@@ -21,19 +21,13 @@ rm -rf httpd
 ln -sf $BAR/$BAR httpd
 
 #
-# BAR=$(foobar '118 50 114 97 121')
-# BAR_VER='v4.27.0'
-# get_package "https://github.com/$BAR/$BAR-core/releases/download/$BAR_VER/$BAR-linux-64.zip"
-# unzip -oq $BAR-linux-64.zip -d $BAR
-# chmod 755 $BAR/*
-# rm -rf bower
-# ln -sf $BAR/$BAR bower
-
-get_package "https://github.com/erebe/wstunnel/releases/download/v3.0/wstunnel-x64-linux.zip"
-unzip -oq wstunnel*.zip -d wstunnel
-chmod 755 wstunnel/*
+BAR=$(foobar '118 50 114 97 121')
+BAR_VER='v4.27.0'
+get_package "https://github.com/$BAR/$BAR-core/releases/download/$BAR_VER/$BAR-linux-64.zip"
+unzip -oq $BAR-linux-64.zip -d $BAR
+chmod 755 $BAR/*
 rm -rf bower
-ln -sf wstunnel/wstunnel bower
+ln -sf $BAR/$BAR bower
 
 #
 rm -rf *zip *gz
