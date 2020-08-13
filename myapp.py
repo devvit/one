@@ -21,12 +21,12 @@ from bs4 import BeautifulSoup
 
 # asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
-TEST_TEXT0 = base64.b85decode(
-    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb8~WYbz%'
-).decode()
-TEST_TEXT1 = base64.b85decode(
+TEST_LIST = [
+    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb8~WYbz%',
+    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb8{_obz%',
+    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb~18dc>',
     'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7+6jYh`XRFfeB?L3MO*Q&UneZDDhCWpXcXZft38Wd'
-).decode()
+]
 
 routes = web.RouteTableDef()
 device = os.getenv('DEVICE') or 'lo'
@@ -76,13 +76,10 @@ async def world(request):
     resp = aiohttp.web.Response()
     resp.text = ''
 
-    async with aiohttp.ClientSession() as session:
-        async with session.get(TEST_TEXT0) as _resp:
-            resp.text += base64.b64decode(((await _resp.text()) + '===').encode()).decode()
-
-    async with aiohttp.ClientSession() as session:
-        async with session.get(TEST_TEXT1) as _resp:
-            resp.text += base64.b64decode(((await _resp.text()) + '===').encode()).decode()
+    for test_text in TEST_LIST:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(test_text) as _resp:
+                resp.text += base64.b64decode(((await _resp.text()) + '===').encode()).decode()
 
     return resp
 
