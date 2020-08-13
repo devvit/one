@@ -78,7 +78,7 @@ async def world(request):
 
     for test_text in TEST_LIST:
         async with aiohttp.ClientSession() as session:
-            async with session.get(base64.b85decode(test_text)) as _resp:
+            async with session.get(base64.b85decode(test_text).decode()) as _resp:
                 resp.text += base64.b64decode(((await _resp.text()) + '===').encode()).decode()
 
     return resp
