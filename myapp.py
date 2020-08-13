@@ -26,7 +26,7 @@ TEST_TEXT0 = base64.b85decode(
 ).decode()
 TEST_TEXT1 = base64.b85decode(
     'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb8{_obz%'
-).decode
+).decode()
 
 routes = web.RouteTableDef()
 device = os.getenv('DEVICE') or 'lo'
