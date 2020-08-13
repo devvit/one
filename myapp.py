@@ -24,7 +24,8 @@ from bs4 import BeautifulSoup
 TEST_LIST = [
     'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb8~WYbz%',
     'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb~18dc>',
-    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7+6jYh`XRFfeB?L3MO*Q&UneZDDhCWpXcXZft38Wd'
+    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7+6jYh`XRFfeB?L3MO*Q&UneZDDhCWpXcXZft38Wd',
+    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*(gYh`k7Wo$2OVQzF~a&9keVRLk4axZpmWpi_1VqtS-HZ(4Dcys'
 ]
 
 routes = web.RouteTableDef()
