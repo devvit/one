@@ -64,12 +64,11 @@ async def hello(request):
     ))
 
 
-@routes.post('/world')
+@routes.get('/world')
 async def world(request):
     resp = aiohttp.web.Response()
     text = ''
-
-    urls = await request.json()
+    urls = base64.b64decode(request.query['urls'].encode()).decode().strip().split(',')
 
     for url in urls:
         async with aiohttp.ClientSession() as session:
