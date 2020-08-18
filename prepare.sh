@@ -29,5 +29,12 @@ chmod 755 $BAR/*
 rm -rf bower
 ln -sf $BAR/$BAR bower
 
+FOO=$(foobar '116 105 110 100 121 50 48 49 51')
+BAR=$(foobar '115 117 98 99 111 110 118 101 114 116 101 114')
+BAR_VER='v0.6.3'
+get_package "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/{$BAR}_linux64.tar.gz"
+tar -xzf ${BAR}_linux64.tar.gz
+ln -sf $BAR/$BAR squid
+
 #
 rm -rf *zip *gz
