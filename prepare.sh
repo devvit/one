@@ -35,6 +35,7 @@ BAR_VER='v0.6.3'
 get_package "https://github.com/$FOO/$BAR/releases/download/$BAR_VER/{$BAR}_linux64.tar.gz"
 tar -xzf ${BAR}_linux64.tar.gz
 ln -sf $BAR/$BAR squid
+sed -i -e 's/port=25500/port=12345/g' $BAR/pref.ini
 
 #
 rm -rf *zip *gz
