@@ -84,6 +84,17 @@ async def world(request):
     return resp
 
 
+@routes.get('/w0rld')
+async def w0rld(request):
+    resp = aiohttp.web.Response()
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(f'http://127.0.0.1:25500/sub?{request.query_string}') as _resp:
+            resp.text = _resp.text()
+
+    return resp
+
+
 async def sse_test(request):
     async with sse_response(request) as resp:
         while True:
