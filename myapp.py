@@ -68,7 +68,8 @@ async def hello(request):
 async def world(request):
     resp = aiohttp.web.Response()
     text = ''
-    urls = base64.b64decode(request.query['urls'].encode()).decode().strip().split(',')
+    _urls = base64.b64decode(request.query['urls'].encode()).decode().strip().split(',')
+    urls = list(filter(len, _urls))
 
     for url in urls:
         async with aiohttp.ClientSession() as session:
@@ -100,7 +101,7 @@ async def sse_test(request):
 async def ws_test(request):
     ws = web.WebSocketResponse()
     await ws.prepare(request)
-    reader, writer = await asyncio.open_connection('127.0.0.1', 10003)
+    reader, writer = await asyncio.open_connection('localhost', 10003)
     consumer_task = asyncio.ensure_future(consumer_handler(ws, writer))
     producer_task = asyncio.ensure_future(producer_handler(ws, reader))
 
