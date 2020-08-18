@@ -21,13 +21,6 @@ from bs4 import BeautifulSoup
 
 # asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
-TEST_LIST = [
-    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb8~WYbz%',
-    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*|ka&vWJFLQHpFKuCSbY*fcb~18dc>',
-    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7+6jYh`XRFfeB?L3MO*Q&UneZDDhCWpXcXZft38Wd',
-    'XmoUNb2=|Ca$$EaXK8e3bz*gMWpZP0ZggdCbS`6WZ7*(gYh`k7Wo$2OVQzF~a&9keVRLk4axZpmWpi_1VqtS-HZ(4Dcys'
-]
-
 routes = web.RouteTableDef()
 device = os.getenv('DEVICE') or 'lo'
 
@@ -71,27 +64,19 @@ async def hello(request):
     ))
 
 
-@routes.get('/world')
+@routes.post('/world')
 async def world(request):
     resp = aiohttp.web.Response()
-    resp.text = ''
+    text = ''
 
-    for test_text in TEST_LIST:
+    urls = await request.json()
+
+    for url in urls:
         async with aiohttp.ClientSession() as session:
-            async with session.get(base64.b85decode(test_text).decode()) as _resp:
-                resp.text += base64.b64decode(((await _resp.text()) + '===').encode()).decode()
+            async with session.get(url) as _resp:
+                text += base64.b64decode(((await _resp.text()) + '===').encode()).decode()
 
-    return resp
-
-
-@routes.get('/w0rld')
-async def w0rld(request):
-    resp = aiohttp.web.Response()
-
-    async with aiohttp.ClientSession() as session:
-        async with session.get(f'http://127.0.0.1:25500/sub?{request.query_string}') as _resp:
-            resp.text = _resp.text()
-
+    resp.text = base64.b64encode(text.encode()).decode()
     return resp
 
 
