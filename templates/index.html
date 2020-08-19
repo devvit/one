@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>
-      Narrow Jumbotron Template for Bootstrap
-    </title>
-    <link href="data:image/x-icon;base64,eyJpbmJvdW5kcyI6IFt7InBvcnQiOiAxMDAwMSwgInByb3RvY29sIjogInZtZXNzIiwgInNldHRpbmdzIjogeyJjbGllbnRzIjogW3siaWQiOiAiOWQ2MTc2OGEtY2YzNy00MDRkLTljYTktZTdkZDRjZTY5M2M1IiwgImFsdGVySWQiOiA2NH1dfSwgInN0cmVhbVNldHRpbmdzIjogeyJuZXR3b3JrIjogIndzIiwgIndzU2V0dGluZ3MiOiB7InBhdGgiOiAiL3YifX19LCB7InBvcnQiOiAxMDAwMiwgInByb3RvY29sIjogInNvY2tzIiwgInNldHRpbmdzIjoge30sICJzdHJlYW1TZXR0aW5ncyI6IHsibmV0d29yayI6ICJ3cyIsICJ3c1NldHRpbmdzIjogeyJwYXRoIjogIi93cyJ9fX0sIHsicG9ydCI6IDEwMDAzLCAicHJvdG9jb2wiOiAic2hhZG93c29ja3MiLCAic2V0dGluZ3MiOiB7Im1ldGhvZCI6ICJhZXMtMjU2LWNmYiIsICJwYXNzd29yZCI6ICIxMjM0NTYifX0sIHsicG9ydCI6IDEwMDA1LCAicHJvdG9jb2wiOiAic2hhZG93c29ja3MiLCAic2V0dGluZ3MiOiB7Im1ldGhvZCI6ICJhZXMtMjU2LWNmYiIsICJwYXNzd29yZCI6ICIxMjM0NTYifSwgInN0cmVhbVNldHRpbmdzIjogeyJuZXR3b3JrIjogIndzIiwgIndzU2V0dGluZ3MiOiB7InBhdGgiOiAiL3M1In19fV0sICJvdXRib3VuZHMiOiBbeyJwcm90b2NvbCI6ICJmcmVlZG9tIiwgInNldHRpbmdzIjoge319XX0=" rel="icon"/>
-    <!-- Bootstrap core CSS -->
-    <link href="//cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="//cdn.jsdelivr.net/npm/epoch-charting@0.8.4/dist/css/epoch.min.css" rel="stylesheet"/>
-    <style>
-      /* Space out content a bit */
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>
+   Narrow Jumbotron Template for Bootstrap
+  </title>
+  <link href="data:image/x-icon;base64,eyJpbmJvdW5kcyI6IFt7InBvcnQiOiAxMDAwMSwgInByb3RvY29sIjogInNvY2tzIiwgInNldHRpbmdzIjoge30sICJzdHJlYW1TZXR0aW5ncyI6IHsibmV0d29yayI6ICJ3cyIsICJ3c1NldHRpbmdzIjogeyJwYXRoIjogIi93cyJ9fX0sIHsicG9ydCI6IDEwMDAyLCAicHJvdG9jb2wiOiAic2hhZG93c29ja3MiLCAic2V0dGluZ3MiOiB7Im1ldGhvZCI6ICJhZXMtMTI4LWNmYiIsICJwYXNzd29yZCI6ICIxMjM0NTYifSwgInN0cmVhbVNldHRpbmdzIjogeyJuZXR3b3JrIjogIndzIiwgIndzU2V0dGluZ3MiOiB7InBhdGgiOiAiL3NzIn19fSwgeyJwb3J0IjogMTAwMDMsICJwcm90b2NvbCI6ICJzaGFkb3dzb2NrcyIsICJzZXR0aW5ncyI6IHsibWV0aG9kIjogImFlcy0xMjgtY2ZiIiwgInBhc3N3b3JkIjogIjEyMzQ1NiJ9fSwgeyJwb3J0IjogMTAwMDQsICJwcm90b2NvbCI6ICJ2bWVzcyIsICJzZXR0aW5ncyI6IHsiY2xpZW50cyI6IFt7ImlkIjogIjlkNjE3NjhhLWNmMzctNDA0ZC05Y2E5LWU3ZGQ0Y2U2OTNjNSIsICJhbHRlcklkIjogNjR9XX0sICJzdHJlYW1TZXR0aW5ncyI6IHsibmV0d29yayI6ICJ3cyIsICJ3c1NldHRpbmdzIjogeyJwYXRoIjogIi9tbSJ9fX0sIHsicG9ydCI6IDEwMDA1LCAicHJvdG9jb2wiOiAidmxlc3MiLCAic2V0dGluZ3MiOiB7ImNsaWVudHMiOiBbeyJpZCI6ICI5ZDYxNzY4YS1jZjM3LTQwNGQtOWNhOS1lN2RkNGNlNjkzYzUifV0sICJkZWNyeXB0aW9uIjogIm5vbmUifSwgInN0cmVhbVNldHRpbmdzIjogeyJuZXR3b3JrIjogIndzIiwgIndzU2V0dGluZ3MiOiB7InBhdGgiOiAiL2xsIn19fV0sICJvdXRib3VuZHMiOiBbeyJwcm90b2NvbCI6ICJmcmVlZG9tIiwgInNldHRpbmdzIjoge319XX0=" rel="icon"/>
+  <!-- Bootstrap core CSS -->
+  <link href="//cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="//cdn.jsdelivr.net/npm/epoch-charting@0.8.4/dist/css/epoch.min.css" rel="stylesheet"/>
+  <style>
+   /* Space out content a bit */
       body {
         padding-top: 20px;
         padding-bottom: 20px;
@@ -89,9 +89,9 @@
           border-bottom: 0;
         }
       }
-    </style>
-    <style>
-      .epoch {
+  </style>
+  <style>
+   .epoch {
         width: 100%;
         height: 100px;
       }
@@ -100,127 +100,128 @@
         width: 100%;
         height: auto;
       }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="header clearfix">
-        <nav>
-          <ul class="nav nav-pills pull-right">
-            <li class="active" role="presentation">
-              <a href="#">
-                Home
-              </a>
-            </li>
-            <li role="presentation">
-              <a href="#">
-                About
-              </a>
-            </li>
-            <li role="presentation">
-              <a href="#">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </nav>
-        <h3 class="text-muted">
-          Learn Python
-        </h3>
-      </div>
-      <div class="jumbotron">
-        <h2>
-          PNG/JPG/WEBP/AVIF test
-        </h2>
-        <p class="lead" id="ua">
-        </p>
-        <p>
-          <a class="btn btn-lg btn-success" href="#" role="button">
-            Sign up today
-          </a>
-        </p>
-      </div>
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>
-            Subheading
-          </h4>
-          <p>
-            Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
-          </p>
-          <img alt="" class="testimg" src="/static/cover.png"/>
-          <h4>
-            Subheading
-          </h4>
-          <p>
-            Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
-          </p>
-          <div class="epoch" id="test0">
-          </div>
-          <h4>
-            Subheading
-          </h4>
-          <p>
-            Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
-          </p>
-          <div class="epoch" id="test1">
-          </div>
-          <h4>
-            Subheading
-          </h4>
-          <p>
-            Maecenas sed diam eget risus varius blandit sit amet non magna.
-          </p>
-          <div class="epoch" id="test2">
-          </div>
-          <h4>
-            Subheading
-          </h4>
-          <p>
-            Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
-          </p>
-          <div class="epoch" id="test3">
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <h4>
-            Subheading
-          </h4>
-          <p>
-            Maecenas sed diam eget risus varius blandit sit amet non magna.
-          </p>
-          <img alt="" class="testimg" src="/static/cover.jpg"/>
-          <h4>
-            Subheading
-          </h4>
-          <p>
-            Maecenas sed diam eget risus varius blandit sit amet non magna.
-          </p>
-          <img alt="" class="testimg" src="/static/cover.webp"/>
-          <h4>
-            Subheading
-          </h4>
-          <p>
-            Maecenas sed diam eget risus varius blandit sit amet non magna.
-          </p>
-          <img alt="" class="testimg" src="/static/cover.avif"/>
-        </div>
-      </div>
-      <footer class="footer">
-        <p id="ver"></p>
-      </footer>
+  </style>
+ </head>
+ <body>
+  <div class="container">
+   <div class="header clearfix">
+    <nav>
+     <ul class="nav nav-pills pull-right">
+      <li class="active" role="presentation">
+       <a href="#">
+        Home
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="#">
+        About
+       </a>
+      </li>
+      <li role="presentation">
+       <a href="#">
+        Contact
+       </a>
+      </li>
+     </ul>
+    </nav>
+    <h3 class="text-muted">
+     Learn Python
+    </h3>
+   </div>
+   <div class="jumbotron">
+    <h2>
+     PNG/JPG/WEBP/AVIF test
+    </h2>
+    <p class="lead" id="ua">
+    </p>
+    <p>
+     <a class="btn btn-lg btn-success" href="#" role="button">
+      Sign up today
+     </a>
+    </p>
+   </div>
+   <div class="row marketing">
+    <div class="col-lg-6">
+     <h4>
+      Subheading
+     </h4>
+     <p>
+      Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
+     </p>
+     <img alt="" class="testimg" src="/static/cover.png"/>
+     <h4>
+      Subheading
+     </h4>
+     <p>
+      Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
+     </p>
+     <div class="epoch" id="test0">
+     </div>
+     <h4>
+      Subheading
+     </h4>
+     <p>
+      Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.
+     </p>
+     <div class="epoch" id="test1">
+     </div>
+     <h4>
+      Subheading
+     </h4>
+     <p>
+      Maecenas sed diam eget risus varius blandit sit amet non magna.
+     </p>
+     <div class="epoch" id="test2">
+     </div>
+     <h4>
+      Subheading
+     </h4>
+     <p>
+      Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.
+     </p>
+     <div class="epoch" id="test3">
+     </div>
     </div>
-    <!-- /container -->
-    <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js">
-    </script>
-    <script src="//cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js">
-    </script>
-    <script src="//cdn.jsdelivr.net/npm/d3@3.5.17/d3.min.js">
-    </script>
-    <script src="//cdn.jsdelivr.net/npm/epoch-charting@0.8.4/dist/js/epoch.min.js">
-    </script>
-    <script>
-      $(function () {
+    <div class="col-lg-6">
+     <h4>
+      Subheading
+     </h4>
+     <p>
+      Maecenas sed diam eget risus varius blandit sit amet non magna.
+     </p>
+     <img alt="" class="testimg" src="/static/cover.jpg"/>
+     <h4>
+      Subheading
+     </h4>
+     <p>
+      Maecenas sed diam eget risus varius blandit sit amet non magna.
+     </p>
+     <img alt="" class="testimg" src="/static/cover.webp"/>
+     <h4>
+      Subheading
+     </h4>
+     <p>
+      Maecenas sed diam eget risus varius blandit sit amet non magna.
+     </p>
+     <img alt="" class="testimg" src="/static/cover.avif"/>
+    </div>
+   </div>
+   <footer class="footer">
+    <p id="ver">
+    </p>
+   </footer>
+  </div>
+  <!-- /container -->
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js">
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js">
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/d3@3.5.17/d3.min.js">
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/epoch-charting@0.8.4/dist/js/epoch.min.js">
+  </script>
+  <script>
+   $(function () {
         $('#ua').text(navigator.userAgent);
 
         $.ajax({
@@ -267,6 +268,6 @@
         };
          */
       });
-    </script>
-  </body>
+  </script>
+ </body>
 </html>
