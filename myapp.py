@@ -80,7 +80,7 @@ async def world(request):
     return resp
 
 
-async def sse_test(request):
+async def test_handler(request):
     async with sse_response(request) as resp:
         while True:
             s0 = psutil.net_io_counters(pernic=True)[device].bytes_recv
@@ -98,7 +98,7 @@ async def sse_test(request):
     return resp
 
 
-async def ws_test(request):
+async def ws_handler(request):
     ws = web.WebSocketResponse()
     await ws.prepare(request)
     reader, writer = await asyncio.open_connection('localhost', 10003)
@@ -152,8 +152,8 @@ app = web.Application()
 # app.on_response_prepare.append(on_prepare)
 app.add_routes([web.static('/static', 'static')])
 aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
-app.router.add_route('GET', '/test', sse_test)
-app.add_routes([web.get('/ww', ws_test)])
+app.router.add_route('GET', '/test', test_handler)
+app.add_routes([web.get('/ww', ws_handler)])
 app.add_routes(routes)
 
 if __name__ == '__main__':
