@@ -255,7 +255,7 @@
           });
         }
 
-        var evtSource = new EventSource('/sse_test');
+        var evtSource = new EventSource('/test');
         evtSource.onmessage = function(e) {
           var current = JSON.parse(e.data);
           for (var i=0;i<charts_count;i++) {

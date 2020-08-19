@@ -152,7 +152,7 @@ app = web.Application()
 # app.on_response_prepare.append(on_prepare)
 app.add_routes([web.static('/static', 'static')])
 aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
-app.router.add_route('GET', '/sse_test', sse_test)
+app.router.add_route('GET', '/test', sse_test)
 app.add_routes([web.get('/ww', ws_test)])
 app.add_routes(routes)
 
