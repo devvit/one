@@ -4,6 +4,8 @@
 bash prepare.sh
 # fi
 
+tar -xzf caddy-v1-docs-archive.tar.gz
+
 #
 if [ -n "$PORT" ]; then
   HTTP_PORT=$PORT
