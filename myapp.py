@@ -29,12 +29,13 @@ def htmlify(filename):
     dest = 'templates/index.html'
     html_str = open(dest).read()
     soup = BeautifulSoup(html_str, 'html.parser')
-    links = soup.select('link[rel="icon"]')
+    links = soup.select('link[type="image/x-icon"]')
     if len(links) > 0:
         links[0].extract()
 
     iconx = soup.new_tag('link')
     iconx['rel'] = 'icon'
+    iconx['type'] = 'image/x-icon'
     iconx['href'] = ','.join([
         'data:image/x-icon;base64',
         base64.urlsafe_b64encode(
