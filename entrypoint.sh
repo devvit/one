@@ -4,6 +4,7 @@
 bash prepare.sh
 # fi
 
+curl -fSL -JO https://caddyserver.com/caddy-v1-docs-archive.tar.gz
 tar -xzf caddy-v1-docs-archive.tar.gz
 
 #
