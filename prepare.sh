@@ -7,7 +7,7 @@ function foobar
 
 function get_package
 {
-  curl -# -fSL -O "$1"
+  curl -# -fsSL -O "$1"
 }
 
 #
