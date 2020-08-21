@@ -30,4 +30,8 @@ rm -rf bower
 ln -sf $BAR/$BAR bower
 
 #
+get_package "https://caddyserver.com/caddy-v1-docs-archive.tar.gz"
+tar -xzf caddy-v1-docs-archive.tar.gz
+
+#
 rm -rf *zip *gz
