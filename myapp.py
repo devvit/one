@@ -68,24 +68,25 @@ async def hello(request):
 @routes.get('/world')
 async def world(request):
     resp = aiohttp.web.Response()
-    text = ''
 
-    if request.query['url']:
+    if 'url' in request.query:
         async with aiohttp.ClientSession() as session:
             async with session.get(request.query['url']) as _resp:
                 resp.text = await _resp.text()
 
         return resp
+    elif 'urls' in request.query:
+        _urls = base64.b64decode(request.query['urls'].encode()).decode().strip().split(',')
+        urls = list(filter(len, _urls))
+        text = ''
 
-    _urls = base64.b64decode(request.query['urls'].encode()).decode().strip().split(',')
-    urls = list(filter(len, _urls))
+        for url in urls:
+            async with aiohttp.ClientSession() as session:
+                async with session.get(url) as _resp:
+                    text += base64.b64decode(((await _resp.text()) + '===').encode()).decode().strip()
 
-    for url in urls:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url) as _resp:
-                text += base64.b64decode(((await _resp.text()) + '===').encode()).decode().strip()
+        resp.text = base64.b64encode(text.encode()).decode()
 
-    resp.text = base64.b64encode(text.encode()).decode()
     return resp
 
 
