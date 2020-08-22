@@ -72,7 +72,7 @@ async def world(request):
 
     if request.query['url']:
         async with aiohttp.ClientSession() as session:
-            async with session.get(request.query('url')) as _resp:
+            async with session.get(request.query['url']) as _resp:
                 resp.text = await _resp.text()
 
         return resp
