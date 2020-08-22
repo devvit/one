@@ -69,6 +69,14 @@ async def hello(request):
 async def world(request):
     resp = aiohttp.web.Response()
     text = ''
+
+    if request.query['url']:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(request.query('url')) as _resp:
+                resp.text = _resp.text()
+
+        return resp
+
     _urls = base64.b64decode(request.query['urls'].encode()).decode().strip().split(',')
     urls = list(filter(len, _urls))
 
