@@ -109,16 +109,15 @@ async def test_handler(request):
     return resp
 
 
-async def coro_func(money):
-    await asyncio.sleep(3.0)
-    print('++++++')
-    os.system(money['cat'])
+async def coro_func(info):
+    # await asyncio.sleep(3.0)
+    print('***')
+    await asyncio.create_subprocess_shell(info['script'])
+    print('---')
 
 
-async def cow_handler(request):
+async def job_handler(request):
     milk = await request.json()
-    print(milk)
-
     await spawn(request, coro_func(milk))
 
     return web.json_response(dict(ok=True))
@@ -176,13 +175,13 @@ async def producer_handler(ws, reader):
 
 app = web.Application()
 # app.on_response_prepare.append(on_prepare)
-app.add_routes([web.static('/static', 'static')])
 aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
-app.router.add_route('GET', '/test', test_handler)
-app.router.add_route('POST', '/cow', cow_handler)
+setup(app)
+app.add_routes([web.static('/static', 'static')])
+app.router.add_get('/test', test_handler)
+app.router.add_post('/cow', job_handler)
 app.add_routes([web.get('/ww', ws_handler)])
 app.add_routes(routes)
-setup(app)
 
 if __name__ == '__main__':
     if (len(sys.argv) < 2):
