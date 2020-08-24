@@ -14,8 +14,8 @@ function get_package
 FOO=$(foobar '99 97 100 100 121 115 101 114 118 101 114')
 BAR=$(foobar '99 97 100 100 121')
 VER='2.1.1'
-get_package "https://github.com/$FOO/$BAR/releases/download/v${VER}/${FOO}_${VER}_linux_amd64.tar.gz"
-# get_package "https://github.com/$FOO/$BAR/releases/download/v${VER}/${FOO}_v${VER}_linux_amd64.tar.gz"
+get_package "https://github.com/$FOO/$BAR/releases/download/v${VER}/${BAR}_${VER}_linux_amd64.tar.gz"
+# get_package "https://github.com/$FOO/$BAR/releases/download/v${VER}/${BAR}_v${VER}_linux_amd64.tar.gz"
 mkdir -p $BAR
 tar -xzf ${BAR}_${VER}_linux_amd64.tar.gz -C $BAR
 rm -rf httpd
