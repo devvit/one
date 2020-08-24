@@ -23,7 +23,7 @@ ln -sf $BAR/$BAR httpd
 #
 get_package "https://${FOO}.com/${BAR}-v1-docs-archive.tar.gz"
 tar -xzf ${BAR}-v1-docs-archive.tar.gz
-mv ${BAR}-v1-docs-archive www
+mv ${FOO}.com-archive www
 
 #
 BAR=$(foobar '118 50 114 97 121')
