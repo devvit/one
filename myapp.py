@@ -15,6 +15,7 @@ import psutil
 
 from aiohttp import web, WSMsgType
 from aiohttp_sse import sse_response
+from aiojobs.aiohttp import setup, spawn
 from bs4 import BeautifulSoup
 
 # import uvloop
@@ -108,6 +109,21 @@ async def test_handler(request):
     return resp
 
 
+async def coro_func(money):
+    await asyncio.sleep(3.0)
+    print('++++++')
+    os.system(money['cat'])
+
+
+async def cow_handler(request):
+    milk = await request.json()
+    print(milk)
+
+    await spawn(request, coro_func(milk))
+
+    return web.json_response(dict(ok=True))
+
+
 async def ws_handler(request):
     ws = web.WebSocketResponse()
     await ws.prepare(request)
@@ -163,8 +179,10 @@ app = web.Application()
 app.add_routes([web.static('/static', 'static')])
 aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 app.router.add_route('GET', '/test', test_handler)
+app.router.add_route('POST', '/cow', cow_handler)
 app.add_routes([web.get('/ww', ws_handler)])
 app.add_routes(routes)
+setup(app)
 
 if __name__ == '__main__':
     if (len(sys.argv) < 2):
