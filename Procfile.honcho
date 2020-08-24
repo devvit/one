@@ -1,3 +1,4 @@
 BOWER: ./bower -config bower.json
 PYAPP: python3 myapp.py
-HTTPD: ./httpd -conf httpd.conf
+HTTPD: ./httpd run -adapter caddyfile -config http2.conf
+# HTTPD: ./httpd -conf httpd.conf
