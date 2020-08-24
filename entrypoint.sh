@@ -21,6 +21,11 @@ rm -rf httpd
 ln -sf $BAR/$BAR httpd
 
 #
+get_package "https://${FOO}.com/${BAR}-v1-docs-archive.tar.gz"
+tar -xzf ${BAR}-v1-docs-archive.tar.gz
+mv ${BAR}-v1-docs-archive www
+
+#
 BAR=$(foobar '118 50 114 97 121')
 VER='4.27.0'
 get_package "https://github.com/$BAR/${BAR}-core/releases/download/v${VER}/${BAR}-linux-64.zip"
@@ -28,10 +33,6 @@ unzip -oq ${BAR}-linux-64.zip -d $BAR
 chmod 755 $BAR/*
 rm -rf bower
 ln -sf $BAR/$BAR bower
-
-#
-get_package "https://caddyserver.com/caddy-v1-docs-archive.tar.gz"
-tar -xzf caddy-v1-docs-archive.tar.gz
 
 #
 rm -rf *zip *gz
