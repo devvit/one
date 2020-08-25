@@ -15,6 +15,7 @@
 
   header {
     -Proxy-Agent
+    Server Apache
   }
 
   @ww {
@@ -23,8 +24,6 @@
     path /
   }
   rewrite @ww /ww
-
-  reverse_proxy localhost:10000
 
   reverse_proxy /v1/* localhost:9999
 
@@ -35,4 +34,6 @@
   reverse_proxy /mm localhost:10004
 
   reverse_proxy /ll localhost:10005
+
+  reverse_proxy localhost:10000
 }
