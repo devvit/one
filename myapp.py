@@ -75,7 +75,7 @@ async def world(request):
         async with aiohttp.ClientSession() as session:
             async with session.get(request.query['url']) as _resp:
                 if 'json' in request.query:
-                    yaml = YAML(typ='safe')
+                    yaml = YAML()
                     parsed = yaml.load(await _resp.text())
                     resp.text = json.dumps(parsed)
                 else:
