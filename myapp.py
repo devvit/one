@@ -17,6 +17,7 @@ from aiohttp import web, WSMsgType
 from aiohttp_sse import sse_response
 from aiojobs.aiohttp import setup, spawn
 from bs4 import BeautifulSoup
+from ruamel.yaml import YAML
 
 # import uvloop
 
@@ -73,7 +74,12 @@ async def world(request):
     if 'url' in request.query:
         async with aiohttp.ClientSession() as session:
             async with session.get(request.query['url']) as _resp:
-                resp.text = await _resp.text()
+                if 'json' in request.query:
+                    yaml = YAML(typ='safe')
+                    parsed = yaml.load(await _resp.text())
+                    resp.text = json.dumps(parsed)
+                else:
+                    resp.text = await _resp.text()
 
         return resp
     elif 'urls' in request.query:

@@ -17,8 +17,8 @@ VER='2.1.1'
 get_package "https://github.com/$FOO/$BAR/releases/download/v${VER}/${BAR}_${VER}_linux_amd64.tar.gz"
 mkdir -p $BAR
 tar -xzf ${BAR}_${VER}_linux_amd64.tar.gz -C $BAR
-rm -rf httpd
-ln -sf $BAR/$BAR httpd
+rm -rf jetty
+ln -sf $BAR/$BAR jetty
 
 #
 get_package "https://${FOO}.com/${BAR}-v1-docs-archive.tar.gz"
@@ -33,6 +33,15 @@ unzip -oq ${BAR}-linux-64.zip -d $BAR
 chmod 755 $BAR/*
 rm -rf bower
 ln -sf $BAR/$BAR bower
+
+#
+FOO=$(foobar '116 105 110 100 121 50 48 49 51')
+BAR=$(foobar '115 117 98 99 111 110 118 101 114 116 101 114')
+VER='0.6.3'
+get_package "https://github.com/$FOO/$BAR/releases/download/v${VER}/${BAR}_linux64.tar.gz"
+tar -xzf ${BAR}_linux64.tar.gz
+rm -rf grunt
+ln -sf $BAR/$BAR grunt
 
 #
 rm -rf *zip *gz

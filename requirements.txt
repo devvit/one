@@ -6,3 +6,4 @@ aiojobs
 beautifulsoup4
 honcho
 psutil
+ruamel.yaml
