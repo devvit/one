@@ -27,7 +27,7 @@
 
   reverse_proxy /v1/* localhost:9999
 
-  reverse_proxt /sub localhost:8888
+  reverse_proxy /sub localhost:8888
 
   reverse_proxy /ws localhost:10001
 
