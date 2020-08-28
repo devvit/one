@@ -25,6 +25,9 @@ from ruamel.yaml import YAML
 
 routes = web.RouteTableDef()
 device = os.getenv('DEVICE') or 'lo'
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko'
+}
 
 
 def htmlify(filename):
@@ -72,7 +75,7 @@ async def world(request):
     resp = aiohttp.web.Response()
 
     if 'url' in request.query:
-        async with aiohttp.ClientSession() as session:
+        async with aiohttp.ClientSession(headers=headers) as session:
             async with session.get(request.query['url']) as _resp:
                 if 'json' in request.query:
                     yaml = YAML()
@@ -88,7 +91,7 @@ async def world(request):
         text = ''
 
         for url in urls:
-            async with aiohttp.ClientSession() as session:
+            async with aiohttp.ClientSession(headers=headers) as session:
                 async with session.get(url) as _resp:
                     text += base64.b64decode(((await _resp.text()) + '===').encode()).decode().strip()
 
