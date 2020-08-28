@@ -66,7 +66,7 @@ async def home(request):
 async def hello(request):
     return web.json_response(dict(
         _ver=os.popen('./bower -version').read().split()[1] if os.path.exists('bower') else '0.0.0',
-        ver=time.ctime(os.path.getmtime('.')) + "-PYTH0N-" + platform.python_version()
+        ver=time.ctime(os.path.getmtime('.')) + "/PYTH0N/" + platform.python_version()
     ))
 
 
