@@ -188,7 +188,7 @@ aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
 setup(app)
 app.add_routes([web.static('/static', 'static')])
 app.router.add_get('/test', test_handler)
-app.router.add_post('/cow', job_handler)
+# app.router.add_post('/cow', job_handler)
 app.add_routes([web.get('/ww', ws_handler)])
 app.add_routes(routes)
 
