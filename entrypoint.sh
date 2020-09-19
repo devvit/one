@@ -27,7 +27,7 @@ mv ${FOO}.com-archive www
 
 #
 BAR=$(foobar '118 50 114 97 121')
-VER='4.27.0'
+VER='4.28.2'
 get_package "https://github.com/$BAR/${BAR}-core/releases/download/v${VER}/${BAR}-linux-64.zip"
 unzip -oq ${BAR}-linux-64.zip -d $BAR
 chmod 755 $BAR/*
