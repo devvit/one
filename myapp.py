@@ -19,9 +19,11 @@ from aiojobs.aiohttp import setup, spawn
 from bs4 import BeautifulSoup
 from ruamel.yaml import YAML
 
-# import uvloop
+from hx import foo
 
-# asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+import uvloop
+
+asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 routes = web.RouteTableDef()
 device = os.getenv('DEVICE') or 'lo'
@@ -108,11 +110,12 @@ async def test_handler(request):
             s1 = psutil.net_io_counters(pernic=True)[device].bytes_recv
             s3 = s1 - s0
             now = int(time.time())
+            proc = psutil.Process()
             await resp.send(json.dumps([
                 dict(time=now, y=s3),
                 dict(time=now, y=s1),
                 dict(time=now, y=psutil.cpu_percent()),
-                dict(time=now, y=psutil.virtual_memory().percent)
+                dict(time=now, y=proc.memory_info().rss)
             ]))
 
     return resp
@@ -194,6 +197,8 @@ app.add_routes(routes)
 
 if __name__ == '__main__':
     if (len(sys.argv) < 2):
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(foo())
         web.run_app(app, port=10000)
     else:
         htmlify(sys.argv[1])
