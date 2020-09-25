@@ -135,6 +135,7 @@ async def job_handler(request):
     return web.json_response(dict(ok=True))
 
 
+# https://github.com/iwanders/ws_bridge
 async def ws_handler(request):
     ws = web.WebSocketResponse()
     await ws.prepare(request)
