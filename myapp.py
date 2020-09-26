@@ -17,9 +17,7 @@ from aiohttp import web, WSMsgType
 from aiohttp_sse import sse_response
 from aiojobs.aiohttp import setup, spawn
 from bs4 import BeautifulSoup
-from ruamel.yaml import YAML
-
-from hx import foo
+from siosocks.io.asyncio import socks_server_handler
 
 import uvloop
 
@@ -79,25 +77,7 @@ async def world(request):
     if 'url' in request.query:
         async with aiohttp.ClientSession(headers=headers) as session:
             async with session.get(request.query['url']) as _resp:
-                if 'json' in request.query:
-                    yaml = YAML()
-                    parsed = yaml.load(await _resp.text())
-                    resp.text = json.dumps(parsed)
-                else:
-                    resp.text = await _resp.text()
-
-        return resp
-    elif 'urls' in request.query:
-        _urls = base64.b64decode(request.query['urls'].encode()).decode().strip().split(',')
-        urls = list(filter(len, _urls))
-        text = ''
-
-        for url in urls:
-            async with aiohttp.ClientSession(headers=headers) as session:
-                async with session.get(url) as _resp:
-                    text += base64.b64decode(((await _resp.text()) + '===').encode()).decode().strip()
-
-        resp.text = base64.b64encode(text.encode()).decode()
+                resp.text = await _resp.text()
 
     return resp
 
@@ -199,7 +179,7 @@ app.add_routes(routes)
 if __name__ == '__main__':
     if (len(sys.argv) < 2):
         loop = asyncio.get_event_loop()
-        loop.run_until_complete(foo())
+        loop.run_until_complete(asyncio.start_server(socks_server_handler, port=10003))
         web.run_app(app, port=10000)
     else:
         htmlify(sys.argv[1])
