@@ -117,7 +117,7 @@ async def job_handler(request):
 
 # https://github.com/iwanders/ws_bridge
 async def ws_handler(request):
-    ws = web.WebSocketResponse()
+    ws = web.WebSocketResponse(protocols=['binary'])
     await ws.prepare(request)
     reader, writer = await asyncio.open_connection('localhost', 10003)
     consumer_task = asyncio.ensure_future(consumer_handler(ws, writer))
