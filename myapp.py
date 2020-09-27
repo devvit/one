@@ -51,7 +51,8 @@ def htmlify(filename):
 
 
 async def on_startup(app):
-    pass
+    # loop = asyncio.get_event_loop()
+    await asyncio.start_server(socks_server_handler, port=10003)
 
 
 @routes.get('/')
@@ -156,13 +157,9 @@ async def producer_handler(ws, reader):
     # await ws.close()
 
 
-def create_app():
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(asyncio.start_server(socks_server_handler, port=10003))
-
+async def create_app():
     app = web.Application()
     app.on_startup.append(on_startup)
-    # app.on_response_prepare.append(on_prepare)
     aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
     setup(app)
     app.add_routes([web.static('/static', 'static')])
