@@ -3,7 +3,6 @@ aiohttp-devtools
 aiohttp-sse
 aiohttp_jinja2
 aiojobs
-beautifulsoup4
 honcho
 psutil
 siosocks

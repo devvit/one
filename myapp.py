@@ -1,7 +1,6 @@
 #
 
 import asyncio
-import base64
 import json
 import os
 import time
@@ -13,8 +12,7 @@ import psutil
 
 from aiohttp import web, WSMsgType
 from aiohttp_sse import sse_response
-from aiojobs.aiohttp import setup, spawn
-from bs4 import BeautifulSoup
+from aiojobs.aiohttp import setup as aiojobs_setup, spawn as aiojobs_spawn
 from siosocks.io.asyncio import socks_server_handler
 
 import uvloop
@@ -26,28 +24,6 @@ device = os.getenv('DEVICE') or 'lo'
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko'
 }
-
-
-def htmlify(filename):
-    dest = 'templates/index.html'
-    html_str = open(dest).read()
-    soup = BeautifulSoup(html_str, 'html.parser')
-    links = soup.select('link[type="image/x-icon"]')
-    if len(links) > 0:
-        links[0].extract()
-
-    iconx = soup.new_tag('link')
-    iconx['rel'] = 'icon'
-    iconx['type'] = 'image/x-icon'
-    iconx['href'] = ','.join([
-        'data:image/x-icon;base64',
-        base64.urlsafe_b64encode(
-            bytes(json.dumps(json.load(open(filename))), 'utf-8')
-        ).decode('utf-8')
-    ])
-    soup.title.insert_after(iconx)
-    with open(dest, 'w') as f:
-        f.write(soup.prettify())
 
 
 async def on_startup(app):
@@ -101,7 +77,7 @@ async def coro_func(info):
 
 async def job_handler(request):
     milk = await request.json()
-    await spawn(request, coro_func(milk))
+    await aiojobs_spawn(request, coro_func(milk))
 
     return web.json_response(dict(ok=True))
 
@@ -161,7 +137,7 @@ async def create_app():
     app = web.Application()
     app.on_startup.append(on_startup)
     aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
-    setup(app)
+    aiojobs_setup(app)
     app.add_routes([web.static('/static', 'static')])
     app.router.add_get('/hello', hello_handler)
     # app.router.add_post('/cow', job_handler)
