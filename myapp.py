@@ -4,8 +4,6 @@ import asyncio
 import base64
 import json
 import os
-import platform
-import sys
 import time
 
 import aiohttp
@@ -52,22 +50,14 @@ def htmlify(filename):
         f.write(soup.prettify())
 
 
-async def on_prepare(request, response):
-    print(request.headers)
+async def on_startup(app):
+    pass
 
 
 @routes.get('/')
 @aiohttp_jinja2.template('index.html')
 async def home(request):
     return dict()
-
-
-@routes.get('/hello')
-async def hello(request):
-    return web.json_response(dict(
-        _ver=os.popen('./bower -version').read().split()[1] if os.path.exists('bower') else '0.0.0',
-        ver=time.ctime(os.path.getmtime('.')) + "/PYTH0N/" + platform.python_version()
-    ))
 
 
 @routes.get('/world')
@@ -82,7 +72,7 @@ async def world(request):
     return resp
 
 
-async def test_handler(request):
+async def hello_handler(request):
     async with sse_response(request) as resp:
         while True:
             s0 = psutil.net_io_counters(pernic=True)[device].bytes_recv
@@ -166,20 +156,23 @@ async def producer_handler(ws, reader):
     # await ws.close()
 
 
-app = web.Application()
-# app.on_response_prepare.append(on_prepare)
-aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
-setup(app)
-app.add_routes([web.static('/static', 'static')])
-app.router.add_get('/test', test_handler)
-# app.router.add_post('/cow', job_handler)
-app.add_routes([web.get('/ww', ws_handler)])
-app.add_routes(routes)
+def create_app():
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(asyncio.start_server(socks_server_handler, port=10003))
+
+    app = web.Application()
+    app.on_startup.append(on_startup)
+    # app.on_response_prepare.append(on_prepare)
+    aiohttp_jinja2.setup(app, loader=jinja2.FileSystemLoader('templates'))
+    setup(app)
+    app.add_routes([web.static('/static', 'static')])
+    app.router.add_get('/hello', hello_handler)
+    # app.router.add_post('/cow', job_handler)
+    app.add_routes([web.get('/ws', ws_handler)])
+    app.add_routes(routes)
+
+    return app
+
 
 if __name__ == '__main__':
-    if (len(sys.argv) < 2):
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(asyncio.start_server(socks_server_handler, port=10003))
-        web.run_app(app, port=10000)
-    else:
-        htmlify(sys.argv[1])
+    web.run_app(create_app(), port=os.environ['HTTP_PORT'])

@@ -1,4 +1,4 @@
-BOWER: ./bower -c bower.json
-GRUNT: PORT=8888 ./grunt
+# BOWER: ./bower -c bower.json
+# GRUNT: PORT=8888 ./grunt
 FLASK: python3 myapp.py
-JETTY: ./jetty run
+# JETTY: ./jetty run

@@ -208,8 +208,7 @@
     </div>
    </div>
    <footer class="footer">
-    <p id="ver">
-    </p>
+     <p>&copy; 2020.</p>
    </footer>
   </div>
   <!-- /container -->
@@ -224,13 +223,6 @@
   <script>
    $(function () {
         $('#ua').text(navigator.userAgent);
-
-        $.ajax({
-          url: '/hello',
-          success: function (data) {
-            $('#ver').html(data.ver);
-          }
-        });
 
         /*
         var loc = window.location, new_uri;
@@ -256,7 +248,7 @@
           });
         }
 
-        var evtSource = new EventSource('/test');
+        var evtSource = new EventSource('/hello');
         evtSource.onmessage = function(e) {
           var current = JSON.parse(e.data);
           for (var i=0;i<charts_count;i++) {
