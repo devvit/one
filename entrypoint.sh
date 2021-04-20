@@ -81,6 +81,7 @@ honcho start -f Procfile.honcho
 # heroku labs:enable log-runtime-metrics
 
 # for f in `docker images -q`; do docker image rm -f $f; done
+# docker container prune
 # docker system prune -a
 
 # https://github.com/cloudfoundry/python-buildpack
